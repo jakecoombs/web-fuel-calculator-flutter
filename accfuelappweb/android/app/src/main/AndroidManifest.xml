@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.acccfuelcalcweb">
+    package="com.example.accfuelappweb">
    <application
-        android:label="acccfuelcalcweb"
+        android:label="accfuelappweb"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

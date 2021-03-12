@@ -1,4 +1,4 @@
-package com.example.acccfuelcalcweb
+package com.example.accfuelappweb
 
 import io.flutter.embedding.android.FlutterActivity
 

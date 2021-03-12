@@ -1,6 +1,6 @@
 {
-    "name": "acccfuelcalcweb",
-    "short_name": "acccfuelcalcweb",
+    "name": "accfuelappweb",
+    "short_name": "accfuelappweb",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
