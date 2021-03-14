@@ -13,12 +13,9 @@ class ThemeModeSelection extends StatefulWidget {
 }
 
 class _ThemeModeSelectionState extends State<ThemeModeSelection> {
-  bool useSystemMode = false;
-
   @override
   void initState() {
     super.initState();
-    useSystemMode = AdaptiveTheme.of(context).mode == AdaptiveThemeMode.system;
   }
 
   Future<Null> setThemeMode(String mode) async {
@@ -50,64 +47,12 @@ class _ThemeModeSelectionState extends State<ThemeModeSelection> {
                   value:
                       AdaptiveTheme.of(context).mode == AdaptiveThemeMode.dark,
                   onChanged: (value) {
-                    if (!useSystemMode) {
-                      AdaptiveTheme.of(context).toggleThemeMode();
-                      if (AdaptiveTheme.of(context).mode ==
-                          AdaptiveThemeMode.dark) {
-                        setThemeMode('dark');
-                      } else {
-                        setThemeMode('light');
-                      }
-                    } else {
-                      useSystemMode = false;
-                      if (MediaQuery.of(context).platformBrightness ==
-                          Brightness.dark) {
-                        AdaptiveTheme.of(context).setLight();
-                      } else {
-                        AdaptiveTheme.of(context).setDark();
-                      }
-                    }
-                  },
-                  activeTrackColor: Colors.green,
-                  activeColor: Colors.white,
-                )
-              ],
-            ),
-            decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.secondary,
-              borderRadius: BorderRadius.circular(12),
-              border:
-                  Border.all(width: 1.5, color: Theme.of(context).accentColor),
-            ),
-            width: MediaQuery.of(context).size.width * 0.7,
-            height: 40,
-            constraints: BoxConstraints(maxWidth: 450),
-          ),
-          Break(
-            height: 10,
-          ),
-          Container(
-            child: Row(
-              children: [
-                Padding(padding: EdgeInsets.only(left: 5)),
-                Expanded(
-                  child: AutoSizeText(
-                    'system default theme'.i18n.toUpperCase(),
-                    style: Theme.of(context).textTheme.headline2,
-                    textAlign: TextAlign.center,
-                    maxLines: 1,
-                  ),
-                ),
-                Switch(
-                  value: useSystemMode,
-                  onChanged: (value) {
-                    useSystemMode = !useSystemMode;
-                    if (useSystemMode) {
-                      setThemeMode('system');
-                      AdaptiveTheme.of(context).setSystem();
+                    AdaptiveTheme.of(context).toggleThemeMode();
+                    if (AdaptiveTheme.of(context).mode ==
+                        AdaptiveThemeMode.dark) {
+                      setThemeMode('dark');
                     } else {
                       setThemeMode('light');
-                      AdaptiveTheme.of(context).setLight();
                     }
                   },
                   activeTrackColor: Colors.green,

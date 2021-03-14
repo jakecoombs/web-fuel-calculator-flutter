@@ -25,7 +25,7 @@ class HomeApp extends StatelessWidget {
     return AdaptiveTheme(
         light: AppTheme.lightTheme,
         dark: AppTheme.darkTheme,
-        initial: AdaptiveThemeMode.system,
+        initial: AdaptiveThemeMode.dark,
         builder: (theme, darkTheme) => I18n(
               child: MaterialApp(
                 title: appTitle,

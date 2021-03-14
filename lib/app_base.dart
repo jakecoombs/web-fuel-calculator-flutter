@@ -30,16 +30,13 @@ class _Base extends State<AppBase> {
   Future<Null> checkUserPrefs() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    String userTheme = prefs.getString('userTheme') ?? 'system';
+    String userTheme = prefs.getString('userTheme') ?? 'dark';
     switch (userTheme) {
       case 'light':
         AdaptiveTheme.of(context).setLight();
         break;
       case 'dark':
         AdaptiveTheme.of(context).setDark();
-        break;
-      case 'system':
-        AdaptiveTheme.of(context).setSystem();
         break;
     }
 
