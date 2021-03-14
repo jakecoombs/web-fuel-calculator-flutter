@@ -46,11 +46,7 @@ class HomeApp extends StatelessWidget {
 
 class SplashIntro extends StatelessWidget {
   String getAppTitle() {
-    String title = 'ACC Fuel Calculator';
-    if (proVersion) {
-      title += ' Pro';
-    }
-    return title;
+    return 'ACC Fuel Calculator';
   }
 
   @override

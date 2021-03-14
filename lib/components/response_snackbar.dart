@@ -8,10 +8,6 @@ class ResponseSnackbar extends SnackBar {
     TextStyle textStyle = TextStyle(color: Colors.white, fontSize: 18);
     Color bgColor = Colors.red[700];
 
-    if (!proVersion) {
-      text = text + '\n\n';
-    }
-
     if (success) {
       textStyle = TextStyle(fontSize: 18);
       bgColor = Colors.green;

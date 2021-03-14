@@ -51,11 +51,7 @@ class _Base extends State<AppBase> {
   }
 
   String getAppTitle() {
-    String title = 'ACC ' + 'Fuel Calculator'.i18n;
-    if (proVersion) {
-      title += ' Pro';
-    }
-    return title;
+    return 'ACC ' + 'Fuel Calculator'.i18n;
   }
 
   @override

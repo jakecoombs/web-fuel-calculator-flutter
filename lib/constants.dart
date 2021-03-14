@@ -68,8 +68,6 @@ const classData = ['GT3', 'GT4'];
 
 const trackConditionsData = ['Dry', 'Wet'];
 
-const appTitle = proVersion ? 'ACC Fuel Calculator Pro' : 'ACC Fuel Calculator';
-
-const proVersion = false;
+const appTitle = 'ACC Fuel Calculator';
 
 const emailAddress = 'intuitionlabsdev@gmail.com';

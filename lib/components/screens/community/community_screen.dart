@@ -32,16 +32,7 @@ class CommunityScreen extends StatelessWidget {
                       style: Theme.of(context).textTheme.headline6),
                   Container(
                     child: LinkButton(
-                        text: 'Skidmarks Motorsport (EU)',
-                        url: 'https://discord.gg/xdzFAvR',
-                        bgColor: Colors.black,
-                        textColor: Colors.white),
-                    width: MediaQuery.of(context).size.width * 0.7,
-                    constraints: BoxConstraints(maxWidth: 450),
-                  ),
-                  Container(
-                    child: LinkButton(
-                        text: 'Slipstream Racing (US)',
+                        text: 'Slipstream Racing',
                         url: 'https://discord.gg/hWaKvmX',
                         bgColor: Colors.red,
                         textColor: Colors.white),
