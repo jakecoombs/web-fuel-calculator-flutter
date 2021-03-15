@@ -5,6 +5,7 @@ extension Localization on String {
   static var t = Translations("en_gb") +
       {
         "en_gb": "Calculate",
+        "en_us": "Calculate",
         "es": "Calcular",
         "pt_br": "Calcular",
         "de": "Berechnen",
@@ -15,6 +16,7 @@ extension Localization on String {
       } +
       {
         "en_gb": "Save",
+        "en_us": "Save",
         "es": "Guardar",
         "pt_br": "Salvar",
         "de": "Speichern",
@@ -25,6 +27,7 @@ extension Localization on String {
       } +
       {
         "en_gb": "Saved",
+        "en_us": "Saved",
         "es": "Guardardo",
         "pt_br": "Salvo",
         "de": "Gespeichert",
@@ -35,6 +38,7 @@ extension Localization on String {
       } +
       {
         "en_gb": "Error",
+        "en_us": "Error",
         "es": "Error",
         "pt_br": "Erro",
         "de": "Fehler",
@@ -45,6 +49,7 @@ extension Localization on String {
       } +
       {
         "en_gb": "Please fill in all values",
+        "en_us": "Please fill in all values",
         "es": "Por favor, llene los datos",
         "pt_br": "Por favor, preencha todos os valores",
         "de": "Alle Felder müssen ausgefüllt sein",
@@ -55,6 +60,7 @@ extension Localization on String {
       } +
       {
         "en_gb": "Community",
+        "en_us": "Community",
         "es": "Comunidad",
         "pt_br": "Comunidade",
         "de": "Community",
@@ -65,6 +71,7 @@ extension Localization on String {
       } +
       {
         "en_gb": "Suggestions",
+        "en_us": "Suggestions",
         "es": "Sugerencias",
         "pt_br": "Seugestões",
         "de": "Vorschläge an den Entwickle",
@@ -75,6 +82,7 @@ extension Localization on String {
       } +
       {
         "en_gb": "Settings",
+        "en_us": "Settings",
         "es": "Configuraciones",
         "pt_br": "Opções",
         "de": "Einstellungen",
@@ -85,6 +93,7 @@ extension Localization on String {
       } +
       {
         "en_gb": "Lap Time",
+        "en_us": "Lap Time",
         "es": "Tiempo de la vuelta",
         "pt_br": "Tempo de volta",
         "de": "Rundenzeit",
@@ -95,6 +104,7 @@ extension Localization on String {
       } +
       {
         "en_gb": "Stint Length",
+        "en_us": "Stint Length",
         "es": "Duración de la sesión",
         "pt_br": "Tempo de Corrida (Stint)",
         "de": "Fahrtzeit",
@@ -138,6 +148,7 @@ extension Localization on String {
       } +
       {
         "en_gb": "Formation Lap",
+        "en_us": "Formation Lap",
         "es": "Vuelta de formación",
         "pt_br": "Volta de apresentação",
         "de": "Einführungsrunde",
@@ -148,6 +159,7 @@ extension Localization on String {
       } +
       {
         "en_gb": "Simple",
+        "en_us": "Simple",
         "es": "Simple",
         "pt_br": "Simples",
         "de": "Einfach",
@@ -158,6 +170,7 @@ extension Localization on String {
       } +
       {
         "en_gb": "Language",
+        "en_us": "Language",
         "es": "Idioma",
         "pt_br": "Idioma",
         "de": "Sprache",
@@ -168,6 +181,7 @@ extension Localization on String {
       } +
       {
         "en_gb": "Upgrade To Premium",
+        "en_us": "Upgrade To Premium",
         "es": "Conseguir la versión pagada",
         "pt_br": "Obtenha a versão premium",
         "de": "Upgrade auf Premium",
@@ -178,6 +192,7 @@ extension Localization on String {
       } +
       {
         "en_gb": "Premium Version",
+        "en_us": "Premium Version",
         "es": "Versión pagada",
         "pt_br": "versão premium",
         "de": "Premium",
@@ -188,6 +203,7 @@ extension Localization on String {
       } +
       {
         "en_gb": "Theme Settings",
+        "en_us": "Theme Settings",
         "es": "Configuración del tema",
         "pt_br": "Opções de tema",
         "de": "Darstellungsoptionen",
@@ -197,7 +213,8 @@ extension Localization on String {
         "fr": "Thème"
       } +
       {
-        "en_gb": "Toggle Dark Mode",
+        "en_gb": "Dark Mode",
+        "en_us": "Dark Mode",
         "es": "Cambiar a modo oscuro",
         "pt_br": "Alterar para modo escuro",
         "de": "Dark Mode ein/aus",
@@ -208,6 +225,7 @@ extension Localization on String {
       } +
       {
         "en_gb": "Use system default theme",
+        "en_us": "Use system default theme",
         "es": "Usar tema predeterminado del sistema",
         "pt_br": "Usar tema padrão do sistema",
         "de": "Standarddarstellung verwenden",
@@ -218,6 +236,7 @@ extension Localization on String {
       } +
       {
         "en_gb": "Fuel Calculator",
+        "en_us": "Fuel Calculator",
         "es": "Calculadora de combustible",
         "pt_br": "Calculadora de combustível",
         "de": "Verbrauchsrechner",
@@ -228,6 +247,7 @@ extension Localization on String {
       } +
       {
         "en_gb": "Send a suggestion",
+        "en_us": "Send a suggestion",
         "es": "Enviar una sugerencia",
         "pt_br": "Envie uma sugestão",
         "de": "Senden Sie einen Vorschlag",
@@ -238,6 +258,7 @@ extension Localization on String {
       } +
       {
         "en_gb": "Submit",
+        "en_us": "Submit",
         "es": "Enviar",
         "pt_br": "Enviar",
         "de": "einreichen",
@@ -248,6 +269,7 @@ extension Localization on String {
       } +
       {
         "en_gb": "Dry",
+        "en_us": "Dry",
         "es": "Seco",
         "pt_br": "Seco",
         "de": "Trocken",
@@ -258,6 +280,7 @@ extension Localization on String {
       } +
       {
         "en_gb": "Wet",
+        "en_us": "Wet",
         "es": "Mojado",
         "pt_br": "Molhado",
         "de": "Regen",
