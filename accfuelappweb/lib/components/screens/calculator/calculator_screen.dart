@@ -11,6 +11,7 @@ import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:accfuelappweb/translations/translations.i18n.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 const double _xs = 320.0;
 const double _s = 370.0;
@@ -61,7 +62,43 @@ class _Calculator extends State<CalculatorScreen> {
             Break(
               height: 10,
             ),
-            calculatorButtons()
+            calculatorButtons(),
+            Break(
+              height: 50,
+            ),
+            InkWell(
+              onTap: () async {
+                var url =
+                    'https://play.google.com/store/apps/details?id=com.accfuelcalc.accfuelcalculator&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1';
+                if (await canLaunch(url)) {
+                  await launch(url);
+                } else {
+                  throw 'Could not launch $url';
+                }
+              },
+              child: Container(
+                child: ClipRRect(
+                  child: Image.asset('assets/googlePlayBadge.png'),
+                ),
+              ),
+            ),
+            Break(),
+            InkWell(
+              onTap: () async {
+                var url =
+                    'https://apps.apple.com/us/app/acc-fuel-calculator/id1540153714?itsct=apps_box&amp;itscg=30200';
+                if (await canLaunch(url)) {
+                  await launch(url);
+                } else {
+                  throw 'Could not launch $url';
+                }
+              },
+              child: Container(
+                child: ClipRRect(
+                  child: Image.asset('assets/appStoreBadge.png'),
+                ),
+              ),
+            )
           ],
         ),
         alignment: Alignment.center,
