@@ -21,6 +21,10 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <meta name="apple-mobile-web-app-title" content="accfuelappweb" />
+    <meta
+      name="google-signin-client_id"
+      content="890632571547-6kj3cv6485hv2kmhi6okkr1unga9hhfj.apps.googleusercontent.com"
+    />
     <link rel="apple-touch-icon" href="icons/Icon-192.png" />
 
     <!-- Favicon -->
@@ -28,6 +32,26 @@
 
     <title>ACC Fuel Calculator</title>
     <link rel="manifest" href="manifest.json" />
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-auth.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      var firebaseConfig = {
+        apiKey: "AIzaSyDIHQ9Th14hk8HoO5E8mBOx5_r6dmAx8z0",
+        authDomain: "acc-fuel-calculator-f55cb.firebaseapp.com",
+        databaseURL: "https://acc-fuel-calculator-f55cb.firebaseio.com",
+        projectId: "acc-fuel-calculator-f55cb",
+        storageBucket: "acc-fuel-calculator-f55cb.appspot.com",
+        messagingSenderId: "890632571547",
+        appId: "1:890632571547:web:a58dc6caad6107aee3143e",
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
   </head>
   <body>
     <!-- This script installs service_worker.js to provide PWA functionality to
@@ -41,30 +65,6 @@
       }
     </script>
 
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-app.js"></script>
-
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-    <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-analytics.js"></script>
-
-    <script>
-      // Your web app's Firebase configuration
-      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-      var firebaseConfig = {
-        apiKey: "AIzaSyDIHQ9Th14hk8HoO5E8mBOx5_r6dmAx8z0",
-        authDomain: "acc-fuel-calculator-f55cb.firebaseapp.com",
-        databaseURL: "https://acc-fuel-calculator-f55cb.firebaseio.com",
-        projectId: "acc-fuel-calculator-f55cb",
-        storageBucket: "acc-fuel-calculator-f55cb.appspot.com",
-        messagingSenderId: "890632571547",
-        appId: "1:890632571547:web:a58dc6caad6107aee3143e",
-        measurementId: "G-QMZ0G7JFNG",
-      };
-      // Initialize Firebase
-      firebase.initializeApp(firebaseConfig);
-      firebase.analytics();
-    </script>
     <script src="main.dart.js" type="application/javascript"></script>
   </body>
 </html>
