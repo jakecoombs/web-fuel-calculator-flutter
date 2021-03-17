@@ -60,6 +60,7 @@ class _AuthDialogState extends State<AuthDialog> {
     return null;
   }
 
+  //todo: sort styling
   @override
   Widget build(BuildContext context) {
     return Dialog(

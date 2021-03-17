@@ -76,6 +76,7 @@ Future<String> signInWithEmailPassword(String email, String password) async {
 }
 
 Future<String> signOut() async {
+  //todo: sort sign out logic
   await _auth.signOut();
 
   SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -88,6 +89,7 @@ Future<String> signOut() async {
 }
 
 Future<String> signInWithGoogle() async {
+  //todo: sort handling of sign in with google
   // Initialize Firebase
   await Firebase.initializeApp();
 
