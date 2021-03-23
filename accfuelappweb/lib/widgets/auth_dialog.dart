@@ -196,12 +196,10 @@ class _AuthDialogState extends State<AuthDialog> {
                                         textControllerEmail.text,
                                         textControllerPassword.text)
                                     .then((result) {
-                                  print(result);
                                   Navigator.pop(context);
                                   ResponseSnackbar.showSnackbar(
                                       context, 'Signed in successfully');
                                 }).catchError((error) {
-                                  print('Sign in Error: $error');
                                   ResponseSnackbar.showSnackbar(
                                       context, 'Sign in Error: $error',
                                       success: false,
@@ -270,12 +268,10 @@ class _AuthDialogState extends State<AuthDialog> {
                                         textControllerEmail.text,
                                         textControllerPassword.text)
                                     .then((result) {
-                                  print(result);
                                   Navigator.pop(context);
                                   ResponseSnackbar.showSnackbar(
                                       context, 'Signed up successfully');
                                 }).catchError((error) {
-                                  print('Registration Error: $error');
                                   ResponseSnackbar.showSnackbar(
                                       context, 'Registration Error: $error',
                                       success: false,

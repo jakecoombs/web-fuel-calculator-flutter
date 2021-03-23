@@ -19,7 +19,6 @@ class _Base extends State<AppBase> {
   Future getUserInfo() async {
     await getUser();
     setState(() {});
-    print(uid);
   }
 
   @override

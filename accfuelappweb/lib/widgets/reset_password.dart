@@ -125,7 +125,6 @@ class _ResetPasswordDialogState extends State<ResetPasswordDialog> {
                                 });
                                 await resetPassword(textControllerEmail.text)
                                     .then((result) {
-                                  print(result);
                                   Navigator.pop(context);
                                   ResponseSnackbar.showSnackbar(
                                       context,
@@ -134,7 +133,6 @@ class _ResetPasswordDialogState extends State<ResetPasswordDialog> {
                                           ' to reset your password',
                                       duration: Duration(seconds: 8));
                                 }).catchError((error) {
-                                  print('Reset Error: $error');
                                   ResponseSnackbar.showSnackbar(
                                       context, 'Error: $error',
                                       success: false,

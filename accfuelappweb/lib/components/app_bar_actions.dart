@@ -64,15 +64,13 @@ class AppBarActions extends StatelessWidget {
                 );
                 break;
               case 3:
-                signOut().then((result) {
-                  print(result);
-                }).catchError((error) {
-                  print('Sign Out Error: $error');
+                signOut().catchError((error) {
+                  ResponseSnackbar.showSnackbar(
+                      context, 'Sign Out Error: $error');
                 });
                 break;
               case 4:
                 resetPassword(userEmail).then((result) {
-                  print(result);
                   ResponseSnackbar.showSnackbar(
                       context,
                       'An email has been sent to ' +
@@ -80,7 +78,6 @@ class AppBarActions extends StatelessWidget {
                           ' to change your password',
                       duration: Duration(seconds: 8));
                 }).catchError((error) {
-                  print('Reset Error: $error');
                   ResponseSnackbar.showSnackbar(context, 'Error: $error',
                       success: false, duration: Duration(seconds: 5));
                 });
