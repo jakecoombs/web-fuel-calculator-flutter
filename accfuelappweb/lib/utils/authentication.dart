@@ -74,7 +74,6 @@ Future<String> signInWithEmailPassword(String email, String password) async {
 }
 
 Future<String> signOut() async {
-  //todo: sort sign out logic
   await _auth.signOut();
 
   SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -84,4 +83,10 @@ Future<String> signOut() async {
   userEmail = null;
 
   return 'User signed out';
+}
+
+Future<String> resetPassword(String email) async {
+  await _auth.sendPasswordResetEmail(email: email);
+
+  return 'User password reset';
 }

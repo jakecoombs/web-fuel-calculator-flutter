@@ -1,7 +1,6 @@
-// The basic skeleton structure of the widget
-
 import 'package:accfuelappweb/components/response_snackbar.dart';
 import 'package:accfuelappweb/utils/authentication.dart';
+import 'package:accfuelappweb/widgets/reset_password.dart';
 import 'package:flutter/material.dart';
 
 class AuthDialog extends StatefulWidget {
@@ -236,6 +235,12 @@ class _AuthDialogState extends State<AuthDialog> {
                           ),
                         ),
                       ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
                       Flexible(
                         flex: 1,
                         child: Container(
@@ -297,6 +302,56 @@ class _AuthDialogState extends State<AuthDialog> {
                                     )
                                   : Text(
                                       'Sign up',
+                                      style: TextStyle(
+                                          fontSize: 14, color: Colors.white),
+                                    ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Flexible(
+                        flex: 1,
+                        child: Container(
+                          width: double.maxFinite,
+                          child: TextButton(
+                            style: ButtonStyle(overlayColor:
+                                MaterialStateProperty.resolveWith<Color>(
+                              (Set<MaterialState> states) {
+                                if (states.contains(MaterialState.hovered))
+                                  return Theme.of(context)
+                                      .colorScheme
+                                      .primary
+                                      .withOpacity(0.5);
+                                return null; // Use the component's default.
+                              },
+                            )),
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                builder: (context) => ResetPasswordDialog(),
+                              );
+                            },
+                            child: Padding(
+                              padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
+                              child: _isRegistering
+                                  ? SizedBox(
+                                      height: 16,
+                                      width: 16,
+                                      child: CircularProgressIndicator(
+                                        strokeWidth: 2,
+                                        valueColor:
+                                            AlwaysStoppedAnimation<Color>(
+                                                Colors.white),
+                                      ),
+                                    )
+                                  : Text(
+                                      'Reset password',
                                       style: TextStyle(
                                           fontSize: 14, color: Colors.white),
                                     ),

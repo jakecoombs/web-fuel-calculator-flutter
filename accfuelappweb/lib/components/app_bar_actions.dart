@@ -1,3 +1,4 @@
+import 'package:accfuelappweb/components/response_snackbar.dart';
 import 'package:accfuelappweb/components/screens/community/community_screen.dart';
 import 'package:accfuelappweb/components/screens/settings/settings_screen.dart';
 import 'package:accfuelappweb/utils/authentication.dart';
@@ -67,6 +68,21 @@ class AppBarActions extends StatelessWidget {
                   print(result);
                 }).catchError((error) {
                   print('Sign Out Error: $error');
+                });
+                break;
+              case 4:
+                resetPassword(userEmail).then((result) {
+                  print(result);
+                  ResponseSnackbar.showSnackbar(
+                      context,
+                      'An email has been sent to ' +
+                          userEmail +
+                          ' to change your password',
+                      duration: Duration(seconds: 8));
+                }).catchError((error) {
+                  print('Reset Error: $error');
+                  ResponseSnackbar.showSnackbar(context, 'Error: $error',
+                      success: false, duration: Duration(seconds: 5));
                 });
                 break;
             }
