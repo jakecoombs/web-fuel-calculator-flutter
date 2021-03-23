@@ -1,5 +1,4 @@
 import 'package:accfuelappweb/components/app_bar_actions.dart';
-import 'package:accfuelappweb/constants.dart';
 import 'package:accfuelappweb/components/app_bar.dart';
 import 'package:accfuelappweb/components/screens/calculator/calculator_screen.dart';
 import 'package:adaptive_theme/adaptive_theme.dart';

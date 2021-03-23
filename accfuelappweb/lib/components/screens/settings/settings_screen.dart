@@ -1,7 +1,6 @@
 import 'package:accfuelappweb/components/app_bar.dart';
 import 'package:accfuelappweb/components/screens/settings/functions/settings_section.dart';
 import 'package:accfuelappweb/components/screens/settings/functions/suggestions_section.dart';
-import 'package:accfuelappweb/components/screens/settings/functions/theme_mode_selection.dart';
 import 'package:accfuelappweb/components/screens/settings/functions/translations_selection.dart';
 import 'package:flutter/material.dart';
 import 'package:accfuelappweb/translations/translations.i18n.dart';
@@ -19,10 +18,6 @@ class _Preferences extends State<SettingsScreen> {
           child: Container(
             child: Column(
               children: [
-                SettingsSection(
-                  title: 'Theme Settings',
-                  child: ThemeModeSelection(),
-                ),
                 SettingsSection(
                   child: TranslationsSelection(),
                   title: 'Language',
