@@ -1,6 +1,7 @@
 import 'package:accfuelappweb/components/app_bar_actions.dart';
 import 'package:accfuelappweb/components/app_bar.dart';
 import 'package:accfuelappweb/components/screens/calculator/calculator_screen.dart';
+import 'package:accfuelappweb/utils/authentication.dart';
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:i18n_extension/i18n_widget.dart';
@@ -15,10 +16,17 @@ class AppBase extends StatefulWidget {
 }
 
 class _Base extends State<AppBase> {
+  Future getUserInfo() async {
+    await getUser();
+    setState(() {});
+    print(uid);
+  }
+
   @override
   void initState() {
-    super.initState();
     checkUserPrefs();
+    getUserInfo();
+    super.initState();
   }
 
   @override

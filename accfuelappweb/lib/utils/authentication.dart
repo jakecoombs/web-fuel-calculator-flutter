@@ -5,7 +5,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
 String name;
-String imageUrl;
 bool authSignedIn;
 String uid;
 String userEmail;
@@ -89,4 +88,22 @@ Future<String> resetPassword(String email) async {
   await _auth.sendPasswordResetEmail(email: email);
 
   return 'User password reset';
+}
+
+Future getUser() async {
+  // Initialize Firebase
+  await Firebase.initializeApp();
+
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  bool authSignedIn = prefs.getBool('auth') ?? false;
+
+  final User user = _auth.currentUser;
+
+  if (authSignedIn == true) {
+    if (user != null) {
+      uid = user.uid;
+      name = user.displayName;
+      userEmail = user.email;
+    }
+  }
 }
