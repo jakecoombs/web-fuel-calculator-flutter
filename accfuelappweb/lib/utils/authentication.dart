@@ -4,7 +4,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
-String name;
 bool authSignedIn;
 String uid;
 String userEmail;
@@ -102,7 +101,6 @@ Future getUser() async {
   if (authSignedIn == true) {
     if (user != null) {
       uid = user.uid;
-      name = user.displayName;
       userEmail = user.email;
     }
   }
