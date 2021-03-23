@@ -1,5 +1,6 @@
 // The basic skeleton structure of the widget
 
+import 'package:accfuelappweb/components/response_snackbar.dart';
 import 'package:accfuelappweb/utils/authentication.dart';
 import 'package:flutter/material.dart';
 
@@ -59,7 +60,6 @@ class _AuthDialogState extends State<AuthDialog> {
     return null;
   }
 
-  //todo: sort styling
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -198,8 +198,15 @@ class _AuthDialogState extends State<AuthDialog> {
                                         textControllerPassword.text)
                                     .then((result) {
                                   print(result);
+                                  Navigator.pop(context);
+                                  ResponseSnackbar.showSnackbar(
+                                      context, 'Signed in successfully');
                                 }).catchError((error) {
                                   print('Sign in Error: $error');
+                                  ResponseSnackbar.showSnackbar(
+                                      context, 'Sign in Error: $error',
+                                      success: false,
+                                      duration: Duration(seconds: 5));
                                 });
                               }
                               setState(() {
@@ -259,8 +266,15 @@ class _AuthDialogState extends State<AuthDialog> {
                                         textControllerPassword.text)
                                     .then((result) {
                                   print(result);
+                                  Navigator.pop(context);
+                                  ResponseSnackbar.showSnackbar(
+                                      context, 'Signed up successfully');
                                 }).catchError((error) {
                                   print('Registration Error: $error');
+                                  ResponseSnackbar.showSnackbar(
+                                      context, 'Registration Error: $error',
+                                      success: false,
+                                      duration: Duration(seconds: 5));
                                 });
                               }
                               setState(() {

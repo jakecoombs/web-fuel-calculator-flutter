@@ -1,10 +1,8 @@
-import 'package:accfuelappweb/constants.dart';
 import 'package:flutter/material.dart';
 
 class ResponseSnackbar extends SnackBar {
   static showSnackbar(BuildContext context, String text,
-      [bool success = true, Duration duration]) {
-    final scaffold = Scaffold.of(context);
+      {bool success = true, Duration duration}) {
     TextStyle textStyle = TextStyle(color: Colors.white, fontSize: 18);
     Color bgColor = Colors.red[700];
 
@@ -13,7 +11,7 @@ class ResponseSnackbar extends SnackBar {
       bgColor = Colors.green;
     }
 
-    scaffold.showSnackBar(SnackBar(
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Text(
         text,
         style: textStyle,

@@ -42,8 +42,9 @@ class SaveButton extends StatelessWidget {
           saveData();
           ResponseSnackbar.showSnackbar(context, 'Saved'.i18n);
         } else {
-          ResponseSnackbar.showSnackbar(context,
-              'Error'.i18n + ': ' + 'Please fill in all values'.i18n, false);
+          ResponseSnackbar.showSnackbar(
+              context, 'Error'.i18n + ': ' + 'Please fill in all values'.i18n,
+              success: false);
         }
       },
     );

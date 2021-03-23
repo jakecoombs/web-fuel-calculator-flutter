@@ -407,8 +407,9 @@ class _Calculator extends State<CalculatorScreen> {
           safeFuel = sf;
           riskyFuel = rf;
         } else {
-          ResponseSnackbar.showSnackbar(context,
-              'Error'.i18n + ': ' + 'Please fill in all values'.i18n, false);
+          ResponseSnackbar.showSnackbar(
+              context, 'Error'.i18n + ': ' + 'Please fill in all values'.i18n,
+              success: false);
         }
       });
     });

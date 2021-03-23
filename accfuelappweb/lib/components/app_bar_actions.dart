@@ -1,4 +1,3 @@
-import 'package:accfuelappweb/components/screens/calculator/calculator_screen.dart';
 import 'package:accfuelappweb/components/screens/community/community_screen.dart';
 import 'package:accfuelappweb/components/screens/settings/settings_screen.dart';
 import 'package:accfuelappweb/utils/authentication.dart';
@@ -33,8 +32,17 @@ class AppBarActions extends StatelessWidget {
                 userEmail == null ? 'Sign in'.i18n : 'Sign out'.i18n,
                 style: Theme.of(context).textTheme.bodyText1,
               ),
-              value: 2,
+              value: userEmail == null ? 2 : 3,
             ),
+            userEmail != null
+                ? PopupMenuItem(
+                    child: Text(
+                      'Change password'.i18n,
+                      style: Theme.of(context).textTheme.bodyText1,
+                    ),
+                    value: 4,
+                  )
+                : null,
           ],
           onSelected: (value) {
             switch (value) {
@@ -49,24 +57,17 @@ class AppBarActions extends StatelessWidget {
                     CupertinoPageRoute(builder: (context) => SettingsScreen()));
                 break;
               case 2:
-                userEmail == null
-                    ? showDialog(
-                        context: context,
-                        builder: (context) => AuthDialog(),
-                      )
-                    : () async {
-                        await signOut().then((result) {
-                          print(result);
-                          Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(
-                              fullscreenDialog: true,
-                              builder: (context) => CalculatorScreen(),
-                            ),
-                          );
-                        }).catchError((error) {
-                          print('Sign Out Error: $error');
-                        });
-                      };
+                showDialog(
+                  context: context,
+                  builder: (context) => AuthDialog(),
+                );
+                break;
+              case 3:
+                signOut().then((result) {
+                  print(result);
+                }).catchError((error) {
+                  print('Sign Out Error: $error');
+                });
                 break;
             }
           },

@@ -291,5 +291,6 @@ extension Localization on String {
       } +
       {"en_gb": "Sign in", "en_us": "Sign in"} +
       {"en_gb": "Sign out", "en_us": "Sign out"} +
-      {"en_gb": "Sign up", "en_us": "Sign up"};
+      {"en_gb": "Sign up", "en_us": "Sign up"} +
+      {"en_gb": "Change password", "en_us": "Change password"};
 }
