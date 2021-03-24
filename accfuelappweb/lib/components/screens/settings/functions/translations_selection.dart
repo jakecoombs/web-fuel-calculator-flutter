@@ -1,5 +1,4 @@
 import 'package:accfuelappweb/components/buttons/link_button.dart';
-import 'package:accfuelappweb/constants.dart';
 import 'package:accfuelappweb/components/functions/data_dropdown.dart';
 import 'package:accfuelappweb/translations/languages.dart';
 import 'package:expandable/expandable.dart';

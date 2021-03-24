@@ -83,10 +83,8 @@ Future<String> signOut() async {
   return 'User signed out';
 }
 
-Future<String> resetPassword(String email) async {
+Future resetPassword(String email) async {
   await _auth.sendPasswordResetEmail(email: email);
-
-  return 'User password reset';
 }
 
 Future getUser() async {
@@ -104,4 +102,10 @@ Future getUser() async {
       userEmail = user.email;
     }
   }
+}
+
+Future deleteUser() async {
+  await _auth.currentUser.delete();
+  userEmail = null;
+  uid = null;
 }
