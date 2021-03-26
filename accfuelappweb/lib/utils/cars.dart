@@ -34,3 +34,15 @@ Future getCars() async {
     cars['cup'].add(element.data()['name']);
   });
 }
+
+String findCarClass(String carName) {
+  var found = false;
+  var carClass = '';
+  cars.keys.forEach((key) {
+    if (cars[key].contains(carName)) {
+      found = true;
+      carClass = key;
+    }
+  });
+  return found ? carClass : null;
+}

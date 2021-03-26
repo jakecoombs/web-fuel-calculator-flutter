@@ -7,6 +7,8 @@ import 'package:accfuelappweb/components/functions/break.dart';
 import 'package:accfuelappweb/components/response_snackbar.dart';
 import 'package:accfuelappweb/components/screens/calculator/functions/inputs.dart';
 import 'package:accfuelappweb/components/screens/calculator/functions/outputs.dart';
+import 'package:accfuelappweb/utils/cars.dart';
+import 'package:accfuelappweb/utils/tracks.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -31,8 +33,15 @@ class _Calculator extends State<CalculatorScreen> {
   var car, track, carClass, classCars, trackConditions;
   ExpandableController modeController = ExpandableController();
 
+  Future initCalcData() async {
+    await getTracks();
+    await getCars();
+    setState(() {});
+  }
+
   @override
   void initState() {
+    initCalcData();
     super.initState();
     carClass = classData[0];
     classCars = carData[0];
@@ -354,7 +363,7 @@ class _Calculator extends State<CalculatorScreen> {
                 litresPerLap: litresPerLap,
                 car: car,
                 track: track,
-                conditons: trackConditions,
+                conditions: trackConditions,
               ),
             ),
           ),
@@ -372,7 +381,7 @@ class _Calculator extends State<CalculatorScreen> {
               litresPerLap: litresPerLap,
               car: car,
               track: track,
-              conditons: trackConditions,
+              conditions: trackConditions,
             ),
             margin: EdgeInsets.only(right: 10),
           ),
@@ -418,7 +427,7 @@ class _Calculator extends State<CalculatorScreen> {
   Future<Null> getDataAndSaveCombo() async {
     getData();
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String trackIndex = trackData.indexOf(track).toString();
+    String trackIndex = tracks.indexOf(track).toString();
     String classIndex = classData.indexOf(carClass).toString();
     String carIndex = classCars.indexOf(car).toString();
     String conditionsIndex =

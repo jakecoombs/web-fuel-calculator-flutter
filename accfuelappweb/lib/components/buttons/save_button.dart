@@ -1,5 +1,6 @@
 import 'package:accfuelappweb/components/buttons/base_button.dart';
 import 'package:accfuelappweb/components/response_snackbar.dart';
+import 'package:accfuelappweb/utils/userData.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:accfuelappweb/translations/translations.i18n.dart';
@@ -10,24 +11,26 @@ class SaveButton extends StatelessWidget {
       @required this.lapSecond,
       @required this.litresPerLap,
       @required this.car,
-      @required this.conditons,
+      @required this.conditions,
       @required this.track});
   final TextEditingController lapMinute, lapSecond, litresPerLap;
-  final track, car, conditons;
+  final track, car, conditions;
 
   Future<Null> saveData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String replacedTrack = track.replaceAll(' ', '');
     String replacedCar = car.replaceAll(' ', '');
     String trackCar = replacedTrack + replacedCar;
-    if (conditons == 'Wet') {
-      trackCar += conditons;
+    if (conditions == 'Wet') {
+      trackCar += conditions;
     }
     prefs.setStringList(trackCar, [
       lapMinute.text.toString(),
       lapSecond.text.toString(),
       litresPerLap.text.toString()
     ]);
+    updateUserData(car, track, conditions, double.parse(litresPerLap.text),
+        int.parse(lapMinute.text), int.parse(lapSecond.text));
   }
 
   @override
