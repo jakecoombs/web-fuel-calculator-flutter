@@ -38,8 +38,8 @@ export const ChangelogListView = () => {
         return (
           <div key={i}>
             <h2>{update.update}</h2>
-            {update.changes.map((change) => {
-              return <p>{change}</p>;
+            {update.changes.map((change, i) => {
+              return <p key={i}>{change}</p>;
             })}
           </div>
         );

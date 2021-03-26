@@ -12,7 +12,7 @@ export const AppUpdate = () => {
     e.preventDefault();
     const collection = Firestore.collection("changelog");
     if (changes.length > 0) {
-      collection.add({
+      await collection.add({
         update: version,
         changes: changes,
       });
