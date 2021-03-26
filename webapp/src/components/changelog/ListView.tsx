@@ -8,16 +8,27 @@ export interface Change {
 
 export const ChangelogListView = () => {
   const [changes, setChanges] = React.useState<Array<Change>>([]);
+  const [loaded, setLoaded] = React.useState(false);
   const collection = Firestore.collection("changelog").orderBy(
     "update",
     "desc"
   );
-  collection.onSnapshot((snapshot) => {
-    const decodedData: Array<Change> = [];
-    snapshot.docs.forEach((doc) => {
-      decodedData.push(doc.data() as Change);
-    });
-    setChanges(decodedData);
+
+  React.useEffect(() => {
+    if (!loaded) {
+      const decodedData: Array<Change> = [];
+      collection
+        .get()
+        .then((data) =>
+          data.docs.forEach((doc) => {
+            decodedData.push(doc.data() as Change);
+          })
+        )
+        .then(() => {
+          setChanges(decodedData);
+          setLoaded(true);
+        });
+    }
   });
 
   return (

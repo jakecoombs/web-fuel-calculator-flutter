@@ -3090,7 +3090,7 @@
   "resolved" "https://registry.yarnpkg.com/babel-plugin-named-asset-import/-/babel-plugin-named-asset-import-0.3.7.tgz"
   "version" "0.3.7"
 
-"babel-plugin-styled-components@>= 1":
+"babel-plugin-styled-components@^1.8.0", "babel-plugin-styled-components@>= 1":
   "integrity" "sha512-FEiD7l5ZABdJPpLssKXjBUJMYqzbcNzBowfXDCdJhOpbhWiewapUaY+LZGT8R4Jg2TwOjGjG4RKeyrO5p9sBkA=="
   "resolved" "https://registry.npmjs.org/babel-plugin-styled-components/-/babel-plugin-styled-components-1.12.0.tgz"
   "version" "1.12.0"

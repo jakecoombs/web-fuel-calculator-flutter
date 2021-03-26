@@ -18,6 +18,7 @@ export const AppUpdate = () => {
       });
       setVersion("");
       setChanges([]);
+      window.location.reload();
     }
   };
 
