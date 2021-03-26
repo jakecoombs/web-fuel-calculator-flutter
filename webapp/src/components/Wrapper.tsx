@@ -1,7 +1,6 @@
-import { ReactChild } from "react";
 import styled from "styled-components";
 
-export const Wrapper = ({ children }: { children: ReactChild }) => {
+export const Wrapper = ({ children }: { children: any }) => {
   return <WrapperStyle>{children}</WrapperStyle>;
 };
 
