@@ -16,7 +16,7 @@ class SaveButton extends StatelessWidget {
   final TextEditingController lapMinute, lapSecond, litresPerLap;
   final track, car, conditions;
 
-  Future<Null> saveData() async {
+  Future<Null> saveData(BuildContext context) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String replacedTrack = track.replaceAll(' ', '');
     String replacedCar = car.replaceAll(' ', '');
@@ -30,7 +30,10 @@ class SaveButton extends StatelessWidget {
       litresPerLap.text.toString()
     ]);
     updateUserData(car, track, conditions, double.parse(litresPerLap.text),
-        int.parse(lapMinute.text), int.parse(lapSecond.text));
+            int.parse(lapMinute.text), int.parse(lapSecond.text))
+        .catchError(ResponseSnackbar.showSnackbar(
+            context, 'Error: Could not save data',
+            success: false));
   }
 
   @override
@@ -42,7 +45,7 @@ class SaveButton extends StatelessWidget {
         if (lapMinute.text.isNotEmpty &&
             lapSecond.text.isNotEmpty &&
             litresPerLap.text.isNotEmpty) {
-          saveData();
+          saveData(context);
           ResponseSnackbar.showSnackbar(context, 'Saved'.i18n);
         } else {
           ResponseSnackbar.showSnackbar(
