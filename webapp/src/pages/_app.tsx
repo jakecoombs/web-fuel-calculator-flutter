@@ -1,7 +1,5 @@
 import GlobalStyle from "../globalStyles";
 import firebase from "firebase/app";
-import "firebase/auth";
-import "firebase/firestore";
 
 const Firebase = () => {
   if (firebase.apps.length === 0) {
@@ -19,8 +17,6 @@ const Firebase = () => {
 };
 
 Firebase();
-
-export const Firestore = firebase.firestore();
 
 function MyApp({ Component, pageProps }: any) {
   return (

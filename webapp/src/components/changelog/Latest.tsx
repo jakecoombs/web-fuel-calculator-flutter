@@ -1,15 +1,25 @@
 import React from "react";
-import { Firestore } from "../../pages/_app";
+import firebase from "firebase/app";
+import "firebase/firestore";
 import { Change } from "./ListView";
 
 export const LatestUpdate = () => {
+  const [loaded, setLoaded] = React.useState(false);
   const [latest, setLatest] = React.useState<Change>();
 
   React.useEffect(() => {
-    Firestore.collection("changelog")
-      .orderBy("update", "desc")
-      .get()
-      .then((data) => setLatest(data.docs[0].data() as Change));
+    if (!loaded) {
+      firebase
+        .firestore()
+        .collection("changelog")
+        .orderBy("update", "desc")
+        .limit(1)
+        .get()
+        .then((data) => {
+          setLatest(data.docs[0].data() as Change);
+          setLoaded(true);
+        });
+    }
   });
 
   return (

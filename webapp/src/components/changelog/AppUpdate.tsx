@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { Firestore } from "../../pages/_app";
 import { ChangelogListView } from "./ListView";
+import firebase from "firebase/app";
+import "firebase/firestore";
 
 export const AppUpdate = () => {
   const [version, setVersion] = React.useState("");
@@ -10,8 +11,8 @@ export const AppUpdate = () => {
 
   const addUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const collection = Firestore.collection("changelog");
     if (changes.length > 0) {
+      const collection = firebase.firestore().collection("changelog");
       await collection.add({
         update: version,
         changes: changes,

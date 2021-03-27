@@ -1,5 +1,6 @@
 import React from "react";
-import { Firestore } from "../../pages/_app";
+import firebase from "firebase/app";
+import "firebase/firestore";
 
 export interface Change {
   update: String;
@@ -9,13 +10,13 @@ export interface Change {
 export const ChangelogListView = () => {
   const [changes, setChanges] = React.useState<Array<Change>>([]);
   const [loaded, setLoaded] = React.useState(false);
-  const collection = Firestore.collection("changelog").orderBy(
-    "update",
-    "desc"
-  );
 
   React.useEffect(() => {
     if (!loaded) {
+      const collection = firebase
+        .firestore()
+        .collection("changelog")
+        .orderBy("update", "desc");
       const decodedData: Array<Change> = [];
       collection
         .get()
