@@ -1,5 +1,7 @@
 import GlobalStyle from "../globalStyles";
 import firebase from "firebase/app";
+import React from "react";
+import Head from "next/head";
 
 const Firebase = () => {
   if (firebase.apps.length === 0) {
@@ -21,6 +23,9 @@ Firebase();
 function MyApp({ Component, pageProps }: any) {
   return (
     <>
+      <Head>
+        <title>ACC Fuel Calculator</title>
+      </Head>
       <GlobalStyle />
       <Component {...pageProps} />
     </>
