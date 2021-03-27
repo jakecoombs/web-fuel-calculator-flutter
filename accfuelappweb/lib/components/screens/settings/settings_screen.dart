@@ -1,4 +1,6 @@
 import 'package:accfuelappweb/components/app_bar.dart';
+import 'package:accfuelappweb/components/buttons/link_button.dart';
+import 'package:accfuelappweb/components/functions/break.dart';
 import 'package:accfuelappweb/components/screens/settings/functions/settings_section.dart';
 import 'package:accfuelappweb/components/screens/settings/functions/suggestions_section.dart';
 import 'package:accfuelappweb/components/screens/settings/functions/translations_selection.dart';
@@ -22,7 +24,17 @@ class _Preferences extends State<SettingsScreen> {
                   child: TranslationsSelection(),
                   title: 'Language',
                 ),
-                SuggestionsSection()
+                SuggestionsSection(),
+                Break(),
+                Container(
+                  child: LinkButton(
+                      text: 'Changelog',
+                      url: 'https://www.acc-fuel-calculator.com/changelog',
+                      bgColor: Theme.of(context).colorScheme.secondary,
+                      textColor: Colors.white),
+                  width: MediaQuery.of(context).size.width * 0.7,
+                  constraints: BoxConstraints(maxWidth: 450),
+                )
               ],
               mainAxisAlignment: MainAxisAlignment.center,
             ),
