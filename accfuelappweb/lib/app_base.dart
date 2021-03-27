@@ -20,6 +20,8 @@ class AppBase extends StatefulWidget {
 class _Base extends State<AppBase> {
   Future initFirebase() async {
     await getUser();
+    await getTracks();
+    await getCars();
     setState(() {});
   }
 

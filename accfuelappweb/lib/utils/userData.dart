@@ -5,43 +5,27 @@ import 'authentication.dart';
 
 FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-String selectedTrack;
-String selectedClass;
-String selectedCar;
-String selectedConditions;
-
-List<Map<String, dynamic>> userData;
-
-Future getUserData() async {
+Future getUserData(String car, String track, String conditions) async {
   await Firebase.initializeApp();
 
   CollectionReference userDataCollection = _firestore.collection('userData');
 
   if (uid != null) {
-    var userDataResponse =
-        await userDataCollection.where('userUid', isEqualTo: uid).get();
+    var userData = await userDataCollection
+        .where('userUid', isEqualTo: uid)
+        .where('car', isEqualTo: car)
+        .where('track', isEqualTo: track)
+        .where('conditions', isEqualTo: conditions)
+        .limit(1)
+        .get();
 
-    if (userDataResponse.docs.length == 0) {
-      userData = null;
-      return;
+    if (userData.docs.length > 0) {
+      print(userData.docs[0].data());
+    } else {
+      print('No saved data');
     }
-
-    userData = [];
-
-    userDataResponse.docs.forEach((doc) {
-      userData.add({
-        'car': doc['car'],
-        'track': doc['track'],
-        'conditions': doc['conditions'],
-        'litresPerLap': doc['litresPerLap'],
-        'minutes': doc['minutes'],
-        'seconds': doc['seconds'],
-      });
-    });
-
-    print(userData);
   } else {
-    userData = null;
+    print('User not logged in');
   }
 }
 
@@ -52,15 +36,32 @@ Future updateUserData(String car, String track, String conditions,
   CollectionReference userDataCollection = _firestore.collection('userData');
 
   if (uid != null) {
-    userDataCollection.add({
-      'car': car,
-      'track': track,
-      'conditions': conditions,
-      'litresPerLap': litresPerLap,
-      'minutes': minutes,
-      'seconds': seconds,
-      'userUid': uid
-    });
+    var existingUserData = await userDataCollection
+        .where('userUid', isEqualTo: uid)
+        .where('car', isEqualTo: car)
+        .where('track', isEqualTo: track)
+        .where('conditions', isEqualTo: conditions)
+        .limit(1)
+        .get();
+
+    //User has already saved data for this combo
+    if (existingUserData.docs.length > 0) {
+      await userDataCollection.doc(existingUserData.docs[0].id).update({
+        'litresPerLap': litresPerLap,
+        'minutes': minutes,
+        'seconds': seconds,
+      });
+    } else {
+      await userDataCollection.add({
+        'car': car,
+        'track': track,
+        'conditions': conditions,
+        'litresPerLap': litresPerLap,
+        'minutes': minutes,
+        'seconds': seconds,
+        'userUid': uid
+      });
+    }
   } else {
     throw Exception('User not logged in');
   }

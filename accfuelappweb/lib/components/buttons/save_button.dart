@@ -1,5 +1,6 @@
 import 'package:accfuelappweb/components/buttons/base_button.dart';
 import 'package:accfuelappweb/components/response_snackbar.dart';
+import 'package:accfuelappweb/utils/authentication.dart';
 import 'package:accfuelappweb/utils/userData.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -29,11 +30,19 @@ class SaveButton extends StatelessWidget {
       lapSecond.text.toString(),
       litresPerLap.text.toString()
     ]);
-    updateUserData(car, track, conditions, double.parse(litresPerLap.text),
-            int.parse(lapMinute.text), int.parse(lapSecond.text))
-        .catchError(ResponseSnackbar.showSnackbar(
-            context, 'Error: Could not save data',
-            success: false));
+    if (uid != null) {
+      updateUserData(car, track, conditions, double.parse(litresPerLap.text),
+              int.parse(lapMinute.text), int.parse(lapSecond.text))
+          .then((value) => ResponseSnackbar.showSnackbar(context, 'Saved'.i18n))
+          .catchError((e) {
+        ResponseSnackbar.showSnackbar(context, 'Error: Could not save data',
+            success: false);
+        print(e);
+      });
+    } else {
+      ResponseSnackbar.showSnackbar(
+          context, 'Saved: Log in to save data to the cloud');
+    }
   }
 
   @override
@@ -46,7 +55,6 @@ class SaveButton extends StatelessWidget {
             lapSecond.text.isNotEmpty &&
             litresPerLap.text.isNotEmpty) {
           saveData(context);
-          ResponseSnackbar.showSnackbar(context, 'Saved'.i18n);
         } else {
           ResponseSnackbar.showSnackbar(
               context, 'Error'.i18n + ': ' + 'Please fill in all values'.i18n,

@@ -67,7 +67,6 @@ Future<String> signInWithEmailPassword(String email, String password) async {
     prefs.setBool('auth', true);
 
     print(user.uid);
-    getUserData();
 
     return 'Successfully logged in, User UID: ${user.uid}';
   }
@@ -101,7 +100,6 @@ Future getUser() async {
   final User user = _auth.currentUser;
 
   if (authSignedIn == true) {
-    getUserData();
     if (user != null) {
       uid = user.uid;
       userEmail = user.email;

@@ -9,6 +9,7 @@ import 'package:accfuelappweb/components/screens/calculator/functions/inputs.dar
 import 'package:accfuelappweb/components/screens/calculator/functions/outputs.dart';
 import 'package:accfuelappweb/utils/cars.dart';
 import 'package:accfuelappweb/utils/tracks.dart';
+import 'package:accfuelappweb/utils/userData.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -33,15 +34,8 @@ class _Calculator extends State<CalculatorScreen> {
   var car, track, carClass, classCars, trackConditions;
   ExpandableController modeController = ExpandableController();
 
-  Future initCalcData() async {
-    await getTracks();
-    await getCars();
-    setState(() {});
-  }
-
   @override
   void initState() {
-    initCalcData();
     super.initState();
     carClass = classData[0];
     classCars = carData[0];
@@ -176,6 +170,7 @@ class _Calculator extends State<CalculatorScreen> {
                     setState(() {
                       trackConditions = conditions;
                     });
+                    getUserData(car, track, conditions);
                     getDataAndSaveCombo();
                   },
                   value: trackConditions),
@@ -187,6 +182,7 @@ class _Calculator extends State<CalculatorScreen> {
                     track = newTrack;
                   });
                   getDataAndSaveCombo();
+                  getUserData(car, track, trackConditions);
                 },
                 value: track,
               ),
@@ -200,6 +196,7 @@ class _Calculator extends State<CalculatorScreen> {
                     car = classCars[0];
                   });
                   getDataAndSaveCombo();
+                  getUserData(car, track, trackConditions);
                 },
                 value: carClass,
               ),
@@ -215,6 +212,7 @@ class _Calculator extends State<CalculatorScreen> {
                 car = newCar;
               });
               getDataAndSaveCombo();
+              getUserData(car, track, trackConditions);
             },
             value: car,
           ),
