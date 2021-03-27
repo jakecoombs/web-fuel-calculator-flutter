@@ -25,6 +25,12 @@ function MyApp({ Component, pageProps }: any) {
     <>
       <Head>
         <title>ACC Fuel Calculator</title>
+        <meta name="description" content="Fuel Calculating tool for ACC" />
+        <meta
+          name="keywords"
+          content="ACC Fuel Calculator, Fuel Calculator, Sim Racing, Sim Racing Fuel Calculator"
+        />
+        <meta name="author" content="Intuition Labs Development" />
       </Head>
       <GlobalStyle />
       <Component {...pageProps} />
