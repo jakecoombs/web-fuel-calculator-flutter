@@ -29,7 +29,7 @@ export const LatestUpdate = () => {
         <>
           <h2>{latest.update}</h2>
           {latest.changes.map((change, i) => {
-            return <p key={i}>{change}</p>;
+            return <p key={i}>- {change}</p>;
           })}
         </>
       )}

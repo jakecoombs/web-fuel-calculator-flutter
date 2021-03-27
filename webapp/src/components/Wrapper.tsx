@@ -4,8 +4,11 @@ export const Wrapper = ({ children }: { children: any }) => {
   return (
     <>
       <AppTitle>
-        <h1>ACC Fuel Calculator</h1>
+        <a href="/">
+          <h1>ACC Fuel Calculator</h1>
+        </a>
       </AppTitle>
+
       <WrapperStyle>{children}</WrapperStyle>
     </>
   );
@@ -24,8 +27,11 @@ const AppTitle = styled.div`
   width: 100%;
   margin-top: -25px;
 
-  h1 {
+  h1,
+  a {
     text-align: center;
     padding: 10px 0;
+    text-decoration: none;
+    color: white;
   }
 `;

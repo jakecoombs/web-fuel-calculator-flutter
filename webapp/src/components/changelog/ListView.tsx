@@ -1,6 +1,7 @@
 import React from "react";
 import firebase from "firebase/app";
 import "firebase/firestore";
+import styled from "styled-components";
 
 export interface Change {
   update: String;
@@ -35,16 +36,27 @@ export const ChangelogListView = () => {
   return (
     <div>
       <h1>Changelog</h1>
-      {changes.map((update, i) => {
-        return (
-          <div key={i}>
-            <h2>{update.update}</h2>
-            {update.changes.map((change, i) => {
-              return <p key={i}>{change}</p>;
-            })}
-          </div>
-        );
-      })}
+      <VersionUpdate>
+        {changes.map((update, i) => {
+          return (
+            <div key={i}>
+              <h2>{update.update}</h2>
+              {update.changes.map((change, i) => {
+                return <p key={i}>- {change}</p>;
+              })}
+            </div>
+          );
+        })}
+      </VersionUpdate>
     </div>
   );
 };
+
+const VersionUpdate = styled.div`
+  div {
+    border-bottom: 1px solid white;
+    :last-child {
+      border-bottom: none;
+    }
+  }
+`;
