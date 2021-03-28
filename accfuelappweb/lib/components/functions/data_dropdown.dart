@@ -15,15 +15,17 @@ class DataDropdown extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: DropdownButton<String>(
-        items: items.map<DropdownMenuItem<String>>((String value) {
-          return DropdownMenuItem<String>(
-            value: value,
-            child: Text(
-              value,
-              style: Theme.of(context).textTheme.headline2,
-            ),
-          );
-        }).toList(),
+        items: items != null
+            ? items.map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(
+                    value,
+                    style: Theme.of(context).textTheme.headline2,
+                  ),
+                );
+              }).toList()
+            : [],
         onChanged: onChanged,
         value: value,
         dropdownColor: Colors.grey[900],

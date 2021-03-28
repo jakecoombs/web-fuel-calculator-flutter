@@ -20,12 +20,14 @@ Future getUserData(String car, String track, String conditions) async {
         .get();
 
     if (userData.docs.length > 0) {
-      print(userData.docs[0].data());
+      return userData.docs[0].data();
     } else {
       print('No saved data');
+      return null;
     }
   } else {
     print('User not logged in');
+    return null;
   }
 }
 

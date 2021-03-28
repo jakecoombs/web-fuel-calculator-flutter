@@ -34,18 +34,19 @@ class _Calculator extends State<CalculatorScreen> {
   var car, track, carClass, classCars, trackConditions;
   ExpandableController modeController = ExpandableController();
 
-  @override
-  void initState() {
-    super.initState();
-    carClass = classData[0];
-    classCars = carData[0];
-    car = classCars[0];
-    track = trackData[0];
+  Future initCalculator() async {
     trackConditions = trackConditionsData[0];
     getSimpleMode();
     getFormation();
-    initCombo();
-    getData();
+    await initCombo();
+    await getData();
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    initCalculator();
+    super.initState();
   }
 
   @override
@@ -111,19 +112,33 @@ class _Calculator extends State<CalculatorScreen> {
   }
 
   Future<Null> initCombo() async {
+    await getTracks();
+    await getCars();
     SharedPreferences prefs = await SharedPreferences.getInstance();
     List<String> userData =
         prefs.getStringList('combo') ?? ['0', '0', '0', '0'];
     if (userData.length == 3) {
       userData.add('0');
     }
-    setState(() {
-      track = trackData[int.parse(userData[0])];
-      carClass = classData[int.parse(userData[1])];
-      classCars = carData[classData.indexOf(carClass)];
-      car = classCars[int.parse(userData[2])];
-      trackConditions = trackConditionsData[int.parse(userData[3])];
-    });
+    if (int.parse(userData[1]) == 0 &&
+        int.parse(userData[2]) > cars['GT3'].length) {
+      // Out of bounds
+      setState(() {
+        track = tracks[int.parse(userData[0])];
+        carClass = 'GT3';
+        classCars = cars['GT3'];
+        car = cars['GT3'][0];
+        trackConditions = trackConditionsData[int.parse(userData[3])];
+      });
+    } else {
+      setState(() {
+        track = tracks[int.parse(userData[0])];
+        carClass = cars.keys.toList()[int.parse(userData[1])];
+        classCars = cars[carClass];
+        car = classCars[int.parse(userData[2])];
+        trackConditions = trackConditionsData[int.parse(userData[3])];
+      });
+    }
   }
 
   Widget dataOptions() {
@@ -170,33 +185,30 @@ class _Calculator extends State<CalculatorScreen> {
                     setState(() {
                       trackConditions = conditions;
                     });
-                    getUserData(car, track, conditions);
                     getDataAndSaveCombo();
                   },
                   value: trackConditions),
               Padding(padding: EdgeInsets.only(left: 5)),
               DataDropdown(
-                items: trackData,
+                items: tracks,
                 onChanged: (String newTrack) {
                   setState(() {
                     track = newTrack;
                   });
                   getDataAndSaveCombo();
-                  getUserData(car, track, trackConditions);
                 },
                 value: track,
               ),
               Padding(padding: EdgeInsets.only(left: 5)),
               DataDropdown(
-                items: classData,
+                items: cars != null ? cars.keys.toList() : [],
                 onChanged: (String newClass) {
                   setState(() {
                     carClass = newClass;
-                    classCars = carData[classData.indexOf(carClass)];
+                    classCars = cars[newClass];
                     car = classCars[0];
                   });
                   getDataAndSaveCombo();
-                  getUserData(car, track, trackConditions);
                 },
                 value: carClass,
               ),
@@ -212,7 +224,6 @@ class _Calculator extends State<CalculatorScreen> {
                 car = newCar;
               });
               getDataAndSaveCombo();
-              getUserData(car, track, trackConditions);
             },
             value: car,
           ),
@@ -226,7 +237,7 @@ class _Calculator extends State<CalculatorScreen> {
     return Column(
       children: [
         ConstrainedDataDropdown(
-          items: trackData,
+          items: tracks,
           onChanged: (String newTrack) {
             setState(() {
               track = newTrack;
@@ -249,11 +260,11 @@ class _Calculator extends State<CalculatorScreen> {
               width: MediaQuery.of(context).size.width * 0.42,
             ),
             ConstrainedDataDropdown(
-              items: classData,
+              items: cars.keys,
               onChanged: (String newClass) {
                 setState(() {
                   carClass = newClass;
-                  classCars = carData[classData.indexOf(carClass)];
+                  classCars = cars[newClass];
                   car = classCars[0];
                 });
                 getDataAndSaveCombo();
@@ -426,7 +437,7 @@ class _Calculator extends State<CalculatorScreen> {
     getData();
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String trackIndex = tracks.indexOf(track).toString();
-    String classIndex = classData.indexOf(carClass).toString();
+    String classIndex = cars.keys.toList().indexOf(carClass).toString();
     String carIndex = classCars.indexOf(car).toString();
     String conditionsIndex =
         trackConditionsData.indexOf(trackConditions).toString();
@@ -435,19 +446,31 @@ class _Calculator extends State<CalculatorScreen> {
   }
 
   Future<Null> getData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    String replacedTrack = track.replaceAll(' ', '');
-    String replacedCar = car.replaceAll(' ', '');
-    String trackCar = replacedTrack + replacedCar;
-    if (trackConditions == 'Wet') {
-      trackCar += trackConditions;
+    var cloudData = await getUserData(car, track, trackConditions);
+    if (cloudData == null) {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      String replacedTrack = track.replaceAll(' ', '');
+      String replacedCar = car.replaceAll(' ', '');
+      String trackCar = replacedTrack + replacedCar;
+      if (trackConditions == 'Wet') {
+        trackCar += trackConditions;
+      }
+      List<String> userData = prefs.getStringList(trackCar) ?? ['', '', ''];
+      setState(() {
+        lapMinute = new TextEditingController(text: userData[0]);
+        lapSecond = new TextEditingController(text: userData[1]);
+        litresPerLap = new TextEditingController(text: userData[2]);
+      });
+    } else {
+      setState(() {
+        lapMinute =
+            new TextEditingController(text: cloudData['minutes'].toString());
+        lapSecond =
+            new TextEditingController(text: cloudData['seconds'].toString());
+        litresPerLap = new TextEditingController(
+            text: cloudData['litresPerLap'].toString());
+      });
     }
-    List<String> userData = prefs.getStringList(trackCar) ?? ['', '', ''];
-    setState(() {
-      lapMinute = new TextEditingController(text: userData[0]);
-      lapSecond = new TextEditingController(text: userData[1]);
-      litresPerLap = new TextEditingController(text: userData[2]);
-    });
   }
 
   Future<Null> getSimpleMode() async {
