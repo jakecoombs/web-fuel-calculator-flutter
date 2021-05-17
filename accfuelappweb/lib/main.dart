@@ -1,6 +1,5 @@
 import 'package:accfuelappweb/app_base.dart';
 import 'package:accfuelappweb/components/app_theme.dart';
-import 'package:accfuelappweb/constants.dart';
 import 'package:accfuelappweb/translations/languages.dart';
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +27,7 @@ class HomeApp extends StatelessWidget {
         initial: AdaptiveThemeMode.dark,
         builder: (theme, darkTheme) => I18n(
               child: MaterialApp(
-                title: appTitle,
+                title: 'ACC Fuel Calculator',
                 debugShowCheckedModeBanner: false,
                 theme: theme,
                 darkTheme: darkTheme,

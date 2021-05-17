@@ -1,14 +1,12 @@
 import 'package:accfuelappweb/components/buttons/calculate_button.dart';
 import 'package:accfuelappweb/components/buttons/save_button.dart';
-import 'package:accfuelappweb/constants.dart';
 import 'package:accfuelappweb/components/functions/data_checkbox.dart';
 import 'package:accfuelappweb/components/functions/data_dropdown.dart';
 import 'package:accfuelappweb/components/functions/break.dart';
 import 'package:accfuelappweb/components/response_snackbar.dart';
 import 'package:accfuelappweb/components/screens/calculator/functions/inputs.dart';
 import 'package:accfuelappweb/components/screens/calculator/functions/outputs.dart';
-import 'package:accfuelappweb/utils/cars.dart';
-import 'package:accfuelappweb/utils/tracks.dart';
+import 'package:accfuelappweb/utils/appData.dart';
 import 'package:accfuelappweb/utils/userData.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
@@ -31,11 +29,11 @@ class _Calculator extends State<CalculatorScreen> {
   var litresPerLap = TextEditingController();
   var riskyFuel = 0, safeFuel = 0;
   var formationLap = false;
-  var car, track, carClass, classCars, trackConditions;
+  var car, track, carClass, classCars, trackCondition;
   ExpandableController modeController = ExpandableController();
 
   Future initCalculator() async {
-    trackConditions = trackConditionsData[0];
+    trackCondition = trackConditions[0];
     getSimpleMode();
     getFormation();
     await initCombo();
@@ -112,8 +110,7 @@ class _Calculator extends State<CalculatorScreen> {
   }
 
   Future<Null> initCombo() async {
-    await getTracks();
-    await getCars();
+    await initData();
     SharedPreferences prefs = await SharedPreferences.getInstance();
     List<String> userData =
         prefs.getStringList('combo') ?? ['0', '0', '0', '0'];
@@ -128,7 +125,7 @@ class _Calculator extends State<CalculatorScreen> {
         carClass = 'GT3';
         classCars = cars['GT3'];
         car = cars['GT3'][0];
-        trackConditions = trackConditionsData[int.parse(userData[3])];
+        trackCondition = trackConditions[int.parse(userData[3])];
       });
     } else {
       setState(() {
@@ -136,7 +133,7 @@ class _Calculator extends State<CalculatorScreen> {
         carClass = cars.keys.toList()[int.parse(userData[1])];
         classCars = cars[carClass];
         car = classCars[int.parse(userData[2])];
-        trackConditions = trackConditionsData[int.parse(userData[3])];
+        trackCondition = trackConditions[int.parse(userData[3])];
       });
     }
   }
@@ -180,14 +177,14 @@ class _Calculator extends State<CalculatorScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               DataDropdown(
-                  items: trackConditionsData,
+                  items: trackConditions,
                   onChanged: (String conditions) {
                     setState(() {
-                      trackConditions = conditions;
+                      trackCondition = conditions;
                     });
                     getDataAndSaveCombo();
                   },
-                  value: trackConditions),
+                  value: trackCondition),
               Padding(padding: EdgeInsets.only(left: 5)),
               DataDropdown(
                 items: tracks,
@@ -249,14 +246,14 @@ class _Calculator extends State<CalculatorScreen> {
         Row(
           children: [
             ConstrainedDataDropdown(
-              items: trackConditionsData,
+              items: trackConditions,
               onChanged: (String conditions) {
                 setState(() {
-                  trackConditions = conditions;
+                  trackCondition = conditions;
                 });
                 getDataAndSaveCombo();
               },
-              value: trackConditions,
+              value: trackCondition,
               width: MediaQuery.of(context).size.width * 0.42,
             ),
             ConstrainedDataDropdown(
@@ -372,7 +369,7 @@ class _Calculator extends State<CalculatorScreen> {
                 litresPerLap: litresPerLap,
                 car: car,
                 track: track,
-                conditions: trackConditions,
+                conditions: trackCondition,
               ),
             ),
           ),
@@ -390,7 +387,7 @@ class _Calculator extends State<CalculatorScreen> {
               litresPerLap: litresPerLap,
               car: car,
               track: track,
-              conditions: trackConditions,
+              conditions: trackCondition,
             ),
             margin: EdgeInsets.only(right: 10),
           ),
@@ -439,21 +436,20 @@ class _Calculator extends State<CalculatorScreen> {
     String trackIndex = tracks.indexOf(track).toString();
     String classIndex = cars.keys.toList().indexOf(carClass).toString();
     String carIndex = classCars.indexOf(car).toString();
-    String conditionsIndex =
-        trackConditionsData.indexOf(trackConditions).toString();
+    String conditionsIndex = trackConditions.indexOf(trackCondition).toString();
     prefs.setStringList(
         'combo', [trackIndex, classIndex, carIndex, conditionsIndex]);
   }
 
   Future<Null> getData() async {
-    var cloudData = await getUserData(car, track, trackConditions);
+    var cloudData = await getUserData(car, track, trackCondition);
     if (cloudData == null) {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String replacedTrack = track.replaceAll(' ', '');
       String replacedCar = car.replaceAll(' ', '');
       String trackCar = replacedTrack + replacedCar;
-      if (trackConditions == 'Wet') {
-        trackCar += trackConditions;
+      if (trackCondition == 'Wet') {
+        trackCar += trackCondition;
       }
       List<String> userData = prefs.getStringList(trackCar) ?? ['', '', ''];
       setState(() {
