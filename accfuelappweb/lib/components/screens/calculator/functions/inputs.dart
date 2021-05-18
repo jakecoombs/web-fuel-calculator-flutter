@@ -7,10 +7,15 @@ class Inputs extends StatelessWidget {
   Inputs({
     @required this.lapMinute,
     @required this.lapSecond,
+    this.lapMillisecond,
     @required this.litresPerLap,
     @required this.stintLength,
   });
-  final TextEditingController lapMinute, lapSecond, litresPerLap, stintLength;
+  final TextEditingController lapMinute,
+      lapSecond,
+      lapMillisecond,
+      litresPerLap,
+      stintLength;
 
   Widget inputTitle(BuildContext context, String title) {
     return Expanded(
@@ -36,15 +41,25 @@ class Inputs extends StatelessWidget {
                     NumberInput(
                       controller: lapMinute,
                       inputLength: 1,
+                      hintText: 'm',
                     ),
                     Text(
-                      ' m   ',
+                      ' : ',
                       style: Theme.of(context).textTheme.headline6,
                     ),
-                    NumberInput(controller: lapSecond, inputLength: 2),
+                    NumberInput(
+                      controller: lapSecond,
+                      inputLength: 2,
+                      hintText: 'sec',
+                    ),
                     Text(
-                      ' s',
+                      ' . ',
                       style: Theme.of(context).textTheme.headline6,
+                    ),
+                    NumberInput(
+                      controller: lapMillisecond,
+                      inputLength: 3,
+                      hintText: '000',
                     ),
                   ],
                 ),

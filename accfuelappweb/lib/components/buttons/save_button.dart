@@ -10,11 +10,15 @@ class SaveButton extends StatelessWidget {
   SaveButton(
       {@required this.lapMinute,
       @required this.lapSecond,
+      @required this.lapMillisecond,
       @required this.litresPerLap,
       @required this.car,
       @required this.conditions,
       @required this.track});
-  final TextEditingController lapMinute, lapSecond, litresPerLap;
+  final TextEditingController lapMinute,
+      lapSecond,
+      lapMillisecond,
+      litresPerLap;
   final track, car, conditions;
 
   Future<Null> saveData(BuildContext context) async {
@@ -28,11 +32,18 @@ class SaveButton extends StatelessWidget {
     prefs.setStringList(trackCar, [
       lapMinute.text.toString(),
       lapSecond.text.toString(),
-      litresPerLap.text.toString()
+      litresPerLap.text.toString(),
+      lapMillisecond.text.isNotEmpty ? lapMillisecond.text : ''
     ]);
     if (uid != null) {
-      updateUserData(car, track, conditions, double.parse(litresPerLap.text),
-              int.parse(lapMinute.text), int.parse(lapSecond.text))
+      updateUserData(
+              car,
+              track,
+              conditions,
+              double.parse(litresPerLap.text),
+              int.parse(lapMinute.text),
+              int.parse(lapSecond.text),
+              int.parse(lapMillisecond.text))
           .then((value) => ResponseSnackbar.showSnackbar(context, 'Saved'.i18n))
           .catchError((e) {
         ResponseSnackbar.showSnackbar(context, 'Error: Could not save data',
@@ -41,7 +52,7 @@ class SaveButton extends StatelessWidget {
       });
     } else {
       ResponseSnackbar.showSnackbar(
-          context, 'Saved: Log in to save data to the cloud');
+          context, 'Saved: Sign in to save data to the cloud');
     }
   }
 

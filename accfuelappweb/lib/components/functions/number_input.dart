@@ -4,11 +4,16 @@ import 'package:flutter/services.dart';
 import 'decimal_formatter.dart';
 
 class NumberInput extends StatelessWidget {
-  NumberInput({this.controller, this.inputLength, this.decimal = false});
+  NumberInput(
+      {this.controller,
+      this.inputLength,
+      this.decimal = false,
+      this.hintText = ''});
 
   final TextEditingController controller;
   final int inputLength;
   final bool decimal;
+  final String hintText;
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +29,8 @@ class NumberInput extends StatelessWidget {
             ? <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly]
             : [DecimalTextInputFormatter(decimalRange: 2)],
         decoration: InputDecoration(
+            hintText: hintText,
+            hintStyle: TextStyle(color: Theme.of(context).accentColor),
             enabledBorder: UnderlineInputBorder(
                 borderSide: BorderSide(
                     color: Theme.of(context).colorScheme.primaryVariant)),

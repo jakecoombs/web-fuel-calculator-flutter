@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:accfuelappweb/components/buttons/calculate_button.dart';
 import 'package:accfuelappweb/components/buttons/save_button.dart';
 import 'package:accfuelappweb/components/functions/data_checkbox.dart';
@@ -25,6 +27,7 @@ class CalculatorScreen extends StatefulWidget {
 class _Calculator extends State<CalculatorScreen> {
   var lapMinute = TextEditingController();
   var lapSecond = TextEditingController();
+  var lapMillisecond = TextEditingController();
   var stintLength = TextEditingController();
   var litresPerLap = TextEditingController();
   var riskyFuel = 0, safeFuel = 0;
@@ -57,6 +60,7 @@ class _Calculator extends State<CalculatorScreen> {
             Inputs(
                 lapMinute: lapMinute,
                 lapSecond: lapSecond,
+                lapMillisecond: lapMillisecond,
                 litresPerLap: litresPerLap,
                 stintLength: stintLength),
             Break(),
@@ -366,6 +370,7 @@ class _Calculator extends State<CalculatorScreen> {
               child: SaveButton(
                 lapMinute: lapMinute,
                 lapSecond: lapSecond,
+                lapMillisecond: lapMillisecond,
                 litresPerLap: litresPerLap,
                 car: car,
                 track: track,
@@ -384,6 +389,7 @@ class _Calculator extends State<CalculatorScreen> {
             child: SaveButton(
               lapMinute: lapMinute,
               lapSecond: lapSecond,
+              lapMillisecond: lapMillisecond,
               litresPerLap: litresPerLap,
               car: car,
               track: track,
@@ -406,7 +412,13 @@ class _Calculator extends State<CalculatorScreen> {
             stintLength.text.isNotEmpty &&
             litresPerLap.text.isNotEmpty) {
           int lm = int.parse(lapMinute.text);
-          int ls = int.parse(lapSecond.text);
+          double ls = double.parse(lapSecond.text);
+
+          if (lapMillisecond.text.isNotEmpty) {
+            ls += double.parse(lapMillisecond.text) /
+                pow(10, lapMillisecond.text.length);
+          }
+
           int sl = int.parse(stintLength.text);
           double lpl = double.parse(litresPerLap.text);
           double lt = lm + (ls / 60);
@@ -451,11 +463,13 @@ class _Calculator extends State<CalculatorScreen> {
       if (trackCondition == 'Wet') {
         trackCar += trackCondition;
       }
-      List<String> userData = prefs.getStringList(trackCar) ?? ['', '', ''];
+      List<String> userData = prefs.getStringList(trackCar) ?? ['', '', '', ''];
       setState(() {
         lapMinute = new TextEditingController(text: userData[0]);
         lapSecond = new TextEditingController(text: userData[1]);
         litresPerLap = new TextEditingController(text: userData[2]);
+        lapMillisecond = new TextEditingController(
+            text: userData.length >= 4 ? userData[3] : '');
       });
     } else {
       setState(() {
@@ -465,6 +479,8 @@ class _Calculator extends State<CalculatorScreen> {
             new TextEditingController(text: cloudData['seconds'].toString());
         litresPerLap = new TextEditingController(
             text: cloudData['litresPerLap'].toString());
+        lapMillisecond = new TextEditingController(
+            text: cloudData['milliseconds'].toString());
       });
     }
   }

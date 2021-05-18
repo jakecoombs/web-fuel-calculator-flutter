@@ -32,7 +32,7 @@ Future getUserData(String car, String track, String conditions) async {
 }
 
 Future updateUserData(String car, String track, String conditions,
-    double litresPerLap, int minutes, int seconds) async {
+    double litresPerLap, int minutes, int seconds, int milliseconds) async {
   await Firebase.initializeApp();
 
   CollectionReference userDataCollection = _firestore.collection('userData');
@@ -52,6 +52,7 @@ Future updateUserData(String car, String track, String conditions,
         'litresPerLap': litresPerLap,
         'minutes': minutes,
         'seconds': seconds,
+        'milliseconds': milliseconds
       });
     } else {
       await userDataCollection.add({
@@ -61,6 +62,7 @@ Future updateUserData(String car, String track, String conditions,
         'litresPerLap': litresPerLap,
         'minutes': minutes,
         'seconds': seconds,
+        'milliseconds': milliseconds,
         'userUid': uid
       });
     }
