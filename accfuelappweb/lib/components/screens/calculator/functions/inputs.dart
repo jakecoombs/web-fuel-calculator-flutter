@@ -23,72 +23,77 @@ class Inputs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          child: Row(
-            children: [
-              inputTitle(context, 'Lap Time'),
-              Row(
-                children: [
-                  Padding(padding: EdgeInsets.only(left: 10)),
-                  NumberInput(
-                    controller: lapMinute,
-                    inputLength: 1,
-                  ),
-                  Text(
-                    ' m   ',
-                    style: Theme.of(context).textTheme.headline6,
-                  ),
-                  NumberInput(controller: lapSecond, inputLength: 2),
-                  Text(
-                    ' s',
-                    style: Theme.of(context).textTheme.headline6,
-                  ),
-                ],
-              ),
-            ],
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Container(
+      child: Column(
+        children: [
+          Container(
+            child: Row(
+              children: [
+                inputTitle(context, 'Lap Time'),
+                Row(
+                  children: [
+                    Padding(padding: EdgeInsets.only(left: 10)),
+                    NumberInput(
+                      controller: lapMinute,
+                      inputLength: 1,
+                    ),
+                    Text(
+                      ' m   ',
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
+                    NumberInput(controller: lapSecond, inputLength: 2),
+                    Text(
+                      ' s',
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
+                  ],
+                ),
+              ],
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            ),
           ),
-        ),
-        Container(
-          child: Row(
-            children: [
-              inputTitle(context, 'Stint Length'),
-              Row(
-                children: [
-                  Padding(padding: EdgeInsets.only(left: 10)),
-                  NumberInput(controller: stintLength, inputLength: 3),
-                  Text(
-                    ' m',
-                    style: Theme.of(context).textTheme.headline6,
-                  ),
-                ],
-              )
-            ],
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          Container(
+            child: Row(
+              children: [
+                inputTitle(context, 'Stint Length'),
+                Row(
+                  children: [
+                    Padding(padding: EdgeInsets.only(left: 10)),
+                    NumberInput(controller: stintLength, inputLength: 3),
+                    Text(
+                      ' m',
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
+                  ],
+                )
+              ],
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            ),
           ),
-        ),
-        Container(
-          child: Row(
-            children: [
-              inputTitle(context, 'Litres Per Lap'),
-              Row(
-                children: [
-                  Padding(padding: EdgeInsets.only(left: 10)),
-                  NumberInput(
-                      controller: litresPerLap, inputLength: 4, decimal: true),
-                  Text(
-                    ' L',
-                    style: Theme.of(context).textTheme.headline6,
-                  ),
-                ],
-              )
-            ],
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          Container(
+            child: Row(
+              children: [
+                inputTitle(context, 'Litres Per Lap'),
+                Row(
+                  children: [
+                    Padding(padding: EdgeInsets.only(left: 10)),
+                    NumberInput(
+                        controller: litresPerLap,
+                        inputLength: 4,
+                        decimal: true),
+                    Text(
+                      ' L',
+                      style: Theme.of(context).textTheme.headline6,
+                    ),
+                  ],
+                )
+              ],
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
+      constraints: BoxConstraints(maxWidth: 600),
     );
   }
 }
