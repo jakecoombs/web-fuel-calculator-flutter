@@ -170,208 +170,217 @@ class _AuthDialogState extends State<AuthDialog> {
                       ),
                     ),
                   ),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Flexible(
-                        flex: 1,
-                        child: Container(
-                          width: double.maxFinite,
-                          child: TextButton(
-                            style: ButtonStyle(overlayColor:
-                                MaterialStateProperty.resolveWith<Color>(
-                              (Set<MaterialState> states) {
-                                if (states.contains(MaterialState.hovered))
-                                  return Theme.of(context)
-                                      .colorScheme
-                                      .primary
-                                      .withOpacity(0.5);
-                                return null; // Use the component's default.
-                              },
-                            )),
-                            onPressed: () async {
-                              if (_validateEmail(textControllerEmail.text) ==
-                                      null &&
-                                  _validatePassword(
-                                          textControllerPassword.text) ==
-                                      null) {
-                                setState(() {
-                                  _isRegistering = true;
-                                });
-                                await signInWithEmailPassword(
-                                        textControllerEmail.text,
-                                        textControllerPassword.text)
-                                    .then((result) {
-                                  Navigator.pop(context);
-                                  ResponseSnackbar.showSnackbar(
-                                      context, 'Signed in successfully');
-                                }).catchError((error) {
-                                  ResponseSnackbar.showSnackbar(
-                                      context, 'Sign in Error: $error',
-                                      success: false,
-                                      duration: Duration(seconds: 5));
-                                });
-                              }
-                              setState(() {
-                                _isRegistering = false;
-                                _isEditingEmail = false;
-                              });
-                            },
-                            child: Padding(
-                              padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
-                              child: _isRegistering
-                                  ? SizedBox(
-                                      height: 16,
-                                      width: 16,
-                                      child: CircularProgressIndicator(
-                                        strokeWidth: 2,
-                                        valueColor:
-                                            AlwaysStoppedAnimation<Color>(
-                                                Colors.white),
+                  Column(
+                    children: _isRegistering
+                        ? [
+                            Center(
+                                child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: SizedBox(
+                                height: 32,
+                                width: 32,
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                      Colors.white),
+                                ),
+                              ),
+                            ))
+                          ]
+                        : [
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Flexible(
+                                  flex: 1,
+                                  child: Container(
+                                    width: double.maxFinite,
+                                    child: TextButton(
+                                      style: ButtonStyle(overlayColor:
+                                          MaterialStateProperty.resolveWith<
+                                              Color>(
+                                        (Set<MaterialState> states) {
+                                          if (states
+                                              .contains(MaterialState.hovered))
+                                            return Theme.of(context)
+                                                .colorScheme
+                                                .primary
+                                                .withOpacity(0.5);
+                                          return null; // Use the component's default.
+                                        },
+                                      )),
+                                      onPressed: () async {
+                                        if (_validateEmail(
+                                                    textControllerEmail.text) ==
+                                                null &&
+                                            _validatePassword(
+                                                    textControllerPassword
+                                                        .text) ==
+                                                null) {
+                                          setState(() {
+                                            _isRegistering = true;
+                                          });
+                                          await signInWithEmailPassword(
+                                                  textControllerEmail.text,
+                                                  textControllerPassword.text)
+                                              .then((result) {
+                                            Navigator.pop(context);
+                                            ResponseSnackbar.showSnackbar(
+                                                context,
+                                                'Signed in successfully');
+                                          }).catchError((error) {
+                                            ResponseSnackbar.showSnackbar(
+                                                context,
+                                                'Sign in Error: $error',
+                                                success: false,
+                                                duration: Duration(seconds: 5));
+                                          });
+                                        }
+                                        setState(() {
+                                          _isRegistering = false;
+                                          _isEditingEmail = false;
+                                        });
+                                      },
+                                      child: Padding(
+                                        padding: EdgeInsets.only(
+                                            top: 15.0, bottom: 15.0),
+                                        child: Text(
+                                          'Sign in',
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              color: Colors.white),
+                                        ),
                                       ),
-                                    )
-                                  : Text(
-                                      'Sign in',
-                                      style: TextStyle(
-                                          fontSize: 14, color: Colors.white),
                                     ),
+                                  ),
+                                ),
+                              ],
                             ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Flexible(
-                        flex: 1,
-                        child: Container(
-                          width: double.maxFinite,
-                          child: TextButton(
-                            style: ButtonStyle(overlayColor:
-                                MaterialStateProperty.resolveWith<Color>(
-                              (Set<MaterialState> states) {
-                                if (states.contains(MaterialState.hovered))
-                                  return Theme.of(context)
-                                      .colorScheme
-                                      .primary
-                                      .withOpacity(0.5);
-                                return null; // Use the component's default.
-                              },
-                            )),
-                            onPressed: () async {
-                              if (_validateEmail(textControllerEmail.text) ==
-                                      null &&
-                                  _validatePassword(
-                                          textControllerPassword.text) ==
-                                      null) {
-                                setState(() {
-                                  _isRegistering = true;
-                                });
-                                await registerWithEmailPassword(
-                                        textControllerEmail.text,
-                                        textControllerPassword.text)
-                                    .then((result) {
-                                  Navigator.pop(context);
-                                  ResponseSnackbar.showSnackbar(
-                                      context, 'Signed up successfully');
-                                  showDialog(
-                                    context: context,
-                                    builder: (context) => ThankYouDialog(),
-                                  );
-                                }).catchError((error) {
-                                  ResponseSnackbar.showSnackbar(
-                                      context, 'Registration Error: $error',
-                                      success: false,
-                                      duration: Duration(seconds: 5));
-                                });
-                              } else {
-                                ResponseSnackbar.showSnackbar(context,
-                                    'Registration Error: Please fill in all the values',
-                                    success: false,
-                                    duration: Duration(seconds: 5));
-                              }
-                              setState(() {
-                                _isRegistering = false;
-                                _isEditingEmail = false;
-                              });
-                            },
-                            child: Padding(
-                              padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
-                              child: _isRegistering
-                                  ? SizedBox(
-                                      height: 16,
-                                      width: 16,
-                                      child: CircularProgressIndicator(
-                                        strokeWidth: 2,
-                                        valueColor:
-                                            AlwaysStoppedAnimation<Color>(
-                                                Colors.white),
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Flexible(
+                                  flex: 1,
+                                  child: Container(
+                                    width: double.maxFinite,
+                                    child: TextButton(
+                                      style: ButtonStyle(overlayColor:
+                                          MaterialStateProperty.resolveWith<
+                                              Color>(
+                                        (Set<MaterialState> states) {
+                                          if (states
+                                              .contains(MaterialState.hovered))
+                                            return Theme.of(context)
+                                                .colorScheme
+                                                .primary
+                                                .withOpacity(0.5);
+                                          return null; // Use the component's default.
+                                        },
+                                      )),
+                                      onPressed: () async {
+                                        if (_validateEmail(
+                                                    textControllerEmail.text) ==
+                                                null &&
+                                            _validatePassword(
+                                                    textControllerPassword
+                                                        .text) ==
+                                                null) {
+                                          setState(() {
+                                            _isRegistering = true;
+                                          });
+                                          await registerWithEmailPassword(
+                                                  textControllerEmail.text,
+                                                  textControllerPassword.text)
+                                              .then((result) {
+                                            Navigator.pop(context);
+                                            ResponseSnackbar.showSnackbar(
+                                                context,
+                                                'Signed up successfully');
+                                            showDialog(
+                                              context: context,
+                                              builder: (context) =>
+                                                  ThankYouDialog(),
+                                            );
+                                          }).catchError((error) {
+                                            ResponseSnackbar.showSnackbar(
+                                                context,
+                                                'Registration Error: $error',
+                                                success: false,
+                                                duration: Duration(seconds: 5));
+                                          });
+                                        } else {
+                                          ResponseSnackbar.showSnackbar(context,
+                                              'Registration Error: Please fill in all the values',
+                                              success: false,
+                                              duration: Duration(seconds: 5));
+                                        }
+                                        setState(() {
+                                          _isRegistering = false;
+                                          _isEditingEmail = false;
+                                        });
+                                      },
+                                      child: Padding(
+                                        padding: EdgeInsets.only(
+                                            top: 15.0, bottom: 15.0),
+                                        child: Text(
+                                          'Sign up',
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              color: Colors.white),
+                                        ),
                                       ),
-                                    )
-                                  : Text(
-                                      'Sign up',
-                                      style: TextStyle(
-                                          fontSize: 14, color: Colors.white),
                                     ),
+                                  ),
+                                ),
+                              ],
                             ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Flexible(
-                        flex: 1,
-                        child: Container(
-                          width: double.maxFinite,
-                          child: TextButton(
-                            style: ButtonStyle(overlayColor:
-                                MaterialStateProperty.resolveWith<Color>(
-                              (Set<MaterialState> states) {
-                                if (states.contains(MaterialState.hovered))
-                                  return Theme.of(context)
-                                      .colorScheme
-                                      .primary
-                                      .withOpacity(0.5);
-                                return null; // Use the component's default.
-                              },
-                            )),
-                            onPressed: () {
-                              showDialog(
-                                context: context,
-                                builder: (context) => ResetPasswordDialog(),
-                              );
-                            },
-                            child: Padding(
-                              padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
-                              child: _isRegistering
-                                  ? SizedBox(
-                                      height: 16,
-                                      width: 16,
-                                      child: CircularProgressIndicator(
-                                        strokeWidth: 2,
-                                        valueColor:
-                                            AlwaysStoppedAnimation<Color>(
-                                                Colors.white),
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Flexible(
+                                  flex: 1,
+                                  child: Container(
+                                    width: double.maxFinite,
+                                    child: TextButton(
+                                      style: ButtonStyle(overlayColor:
+                                          MaterialStateProperty.resolveWith<
+                                              Color>(
+                                        (Set<MaterialState> states) {
+                                          if (states
+                                              .contains(MaterialState.hovered))
+                                            return Theme.of(context)
+                                                .colorScheme
+                                                .primary
+                                                .withOpacity(0.5);
+                                          return null; // Use the component's default.
+                                        },
+                                      )),
+                                      onPressed: () {
+                                        showDialog(
+                                          context: context,
+                                          builder: (context) =>
+                                              ResetPasswordDialog(),
+                                        );
+                                      },
+                                      child: Padding(
+                                        padding: EdgeInsets.only(
+                                            top: 15.0, bottom: 15.0),
+                                        child: Text(
+                                          'Reset password',
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              color: Colors.white),
+                                        ),
                                       ),
-                                    )
-                                  : Text(
-                                      'Reset password',
-                                      style: TextStyle(
-                                          fontSize: 14, color: Colors.white),
                                     ),
+                                  ),
+                                ),
+                              ],
                             ),
-                          ),
-                        ),
-                      ),
-                    ],
+                          ],
                   ),
                 ],
               ),
