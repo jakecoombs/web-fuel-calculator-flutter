@@ -1,5 +1,4 @@
 import 'package:accfuelappweb/components/screens/account/account_screen.dart';
-import 'package:accfuelappweb/components/screens/community/community_screen.dart';
 import 'package:accfuelappweb/components/screens/settings/settings_screen.dart';
 import 'package:accfuelappweb/utils/authentication.dart';
 import 'package:accfuelappweb/widgets/auth_dialog.dart';
@@ -14,13 +13,6 @@ class AppBarActions extends StatelessWidget {
         padding: EdgeInsets.only(right: 10.0),
         child: PopupMenuButton(
           itemBuilder: (context) => [
-            PopupMenuItem(
-              child: Text(
-                'Community'.i18n,
-                style: Theme.of(context).textTheme.bodyText1,
-              ),
-              value: 0,
-            ),
             PopupMenuItem(
               child: Text(
                 'Settings'.i18n,
@@ -38,12 +30,6 @@ class AppBarActions extends StatelessWidget {
           ],
           onSelected: (value) {
             switch (value) {
-              case 0:
-                Navigator.push(
-                    context,
-                    CupertinoPageRoute(
-                        builder: (context) => CommunityScreen()));
-                break;
               case 1:
                 Navigator.push(context,
                     CupertinoPageRoute(builder: (context) => SettingsScreen()));
