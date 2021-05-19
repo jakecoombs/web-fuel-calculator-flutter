@@ -43,7 +43,9 @@ class SaveButton extends StatelessWidget {
               double.parse(litresPerLap.text),
               int.parse(lapMinute.text),
               int.parse(lapSecond.text),
-              int.parse(lapMillisecond.text))
+              lapMillisecond.text.isNotEmpty
+                  ? int.parse(lapMillisecond.text)
+                  : 0)
           .then((value) => ResponseSnackbar.showSnackbar(context, 'Saved'.i18n))
           .catchError((e) {
         ResponseSnackbar.showSnackbar(context, 'Error: Could not save data',

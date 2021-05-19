@@ -480,7 +480,9 @@ class _Calculator extends State<CalculatorScreen> {
         litresPerLap = new TextEditingController(
             text: cloudData['litresPerLap'].toString());
         lapMillisecond = new TextEditingController(
-            text: cloudData['milliseconds'].toString());
+            text: cloudData['milliseconds'].toString() == '0'
+                ? ''
+                : cloudData['milliseconds'].toString());
       });
     }
   }
