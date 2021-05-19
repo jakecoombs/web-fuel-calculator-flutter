@@ -10,7 +10,7 @@ class BaseButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      child: RaisedButton(
+      child: ElevatedButton(
         onPressed: onPressed,
         child: Row(
           children: [
@@ -32,11 +32,13 @@ class BaseButton extends StatelessWidget {
           ],
           mainAxisAlignment: MainAxisAlignment.center,
         ),
-        color: Theme.of(context).colorScheme.secondary,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-            side: BorderSide(color: Theme.of(context).accentColor, width: 1.5)),
-        elevation: 0,
+        style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all<Color>(
+                Theme.of(context).colorScheme.secondary),
+            shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+                side: BorderSide(
+                    color: Theme.of(context).accentColor, width: 1.5)))),
       ),
       width: 160,
     );

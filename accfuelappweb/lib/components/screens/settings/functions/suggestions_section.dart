@@ -11,10 +11,9 @@ class SuggestionsSection extends StatelessWidget {
         Break(),
         Container(
           child: LinkButton(
-              text: 'Send a suggestion'.i18n,
-              url: 'https://forms.gle/3b75dArtWMBtt3PT7',
-              bgColor: Theme.of(context).colorScheme.secondary,
-              textColor: Colors.white),
+            text: 'Send a suggestion'.i18n,
+            url: 'https://forms.gle/3b75dArtWMBtt3PT7',
+          ),
           width: MediaQuery.of(context).size.width * 0.7,
           constraints: BoxConstraints(maxWidth: 450),
         )

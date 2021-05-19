@@ -28,10 +28,9 @@ class _Preferences extends State<SettingsScreen> {
                 Break(),
                 Container(
                   child: LinkButton(
-                      text: 'Changelog',
-                      url: 'https://www.acc-fuel-calculator.com/changelog',
-                      bgColor: Theme.of(context).colorScheme.secondary,
-                      textColor: Colors.white),
+                    text: 'Changelog',
+                    url: 'https://www.acc-fuel-calculator.com/changelog',
+                  ),
                   width: MediaQuery.of(context).size.width * 0.7,
                   constraints: BoxConstraints(maxWidth: 450),
                 )

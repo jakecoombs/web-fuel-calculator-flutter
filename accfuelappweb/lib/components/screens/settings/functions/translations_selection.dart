@@ -100,10 +100,9 @@ class _TranslationsSelectionState extends State<TranslationsSelection> {
           ),
           expanded: Container(
             child: LinkButton(
-                text: 'Translate',
-                url: 'https://forms.gle/KMz4BbkR4GPqc9QMA',
-                bgColor: Theme.of(context).colorScheme.secondary,
-                textColor: Colors.white),
+              text: 'Translate',
+              url: 'https://forms.gle/KMz4BbkR4GPqc9QMA',
+            ),
             width: MediaQuery.of(context).size.width * 0.7,
             constraints: BoxConstraints(maxWidth: 450),
           ),
