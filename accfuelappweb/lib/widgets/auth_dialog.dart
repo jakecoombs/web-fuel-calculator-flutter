@@ -1,6 +1,7 @@
 import 'package:accfuelappweb/components/response_snackbar.dart';
 import 'package:accfuelappweb/utils/authentication.dart';
 import 'package:accfuelappweb/widgets/reset_password.dart';
+import 'package:accfuelappweb/widgets/thank_you_dialog.dart';
 import 'package:flutter/material.dart';
 
 class AuthDialog extends StatefulWidget {
@@ -73,7 +74,10 @@ class _AuthDialogState extends State<AuthDialog> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text('Email address'),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 8),
+                    child: Text('Email address'),
+                  ),
                   TextField(
                     focusNode: textFocusNodeEmail,
                     keyboardType: TextInputType.emailAddress,
@@ -119,7 +123,10 @@ class _AuthDialogState extends State<AuthDialog> {
                       ),
                     ),
                   ),
-                  Text('Password'),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: Text('Password'),
+                  ),
                   TextField(
                     focusNode: textFocusNodePassword,
                     textInputAction: TextInputAction.next,
@@ -271,12 +278,21 @@ class _AuthDialogState extends State<AuthDialog> {
                                   Navigator.pop(context);
                                   ResponseSnackbar.showSnackbar(
                                       context, 'Signed up successfully');
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => ThankYouDialog(),
+                                  );
                                 }).catchError((error) {
                                   ResponseSnackbar.showSnackbar(
                                       context, 'Registration Error: $error',
                                       success: false,
                                       duration: Duration(seconds: 5));
                                 });
+                              } else {
+                                ResponseSnackbar.showSnackbar(context,
+                                    'Registration Error: Please fill in all the values',
+                                    success: false,
+                                    duration: Duration(seconds: 5));
                               }
                               setState(() {
                                 _isRegistering = false;

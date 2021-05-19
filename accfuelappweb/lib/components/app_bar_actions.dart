@@ -30,7 +30,7 @@ class AppBarActions extends StatelessWidget {
             ),
             PopupMenuItem(
               child: Text(
-                userEmail == null ? 'Sign in'.i18n : 'Account'.i18n,
+                userEmail == null ? 'Sign in / Sign up'.i18n : 'Account'.i18n,
                 style: Theme.of(context).textTheme.bodyText1,
               ),
               value: userEmail == null ? 2 : 3,
