@@ -129,7 +129,7 @@ class _AuthDialogState extends State<AuthDialog> {
                   ),
                   TextField(
                     focusNode: textFocusNodePassword,
-                    textInputAction: TextInputAction.next,
+                    textInputAction: TextInputAction.go,
                     controller: textControllerPassword,
                     autofocus: false,
                     obscureText: true,
@@ -138,8 +138,29 @@ class _AuthDialogState extends State<AuthDialog> {
                         _isEditingPassword = true;
                       });
                     },
-                    onSubmitted: (value) {
-                      textFocusNodePassword.unfocus();
+                    onSubmitted: (value) async {
+                      if (_validateEmail(textControllerEmail.text) == null &&
+                          _validatePassword(textControllerPassword.text) ==
+                              null) {
+                        setState(() {
+                          _isRegistering = true;
+                        });
+                        await signInWithEmailPassword(textControllerEmail.text,
+                                textControllerPassword.text)
+                            .then((result) {
+                          Navigator.pop(context);
+                          ResponseSnackbar.showSnackbar(
+                              context, 'Signed in successfully');
+                        }).catchError((error) {
+                          ResponseSnackbar.showSnackbar(
+                              context, 'Sign in Error: $error',
+                              success: false, duration: Duration(seconds: 5));
+                        });
+                      }
+                      setState(() {
+                        _isRegistering = false;
+                        _isEditingEmail = false;
+                      });
                     },
                     style: TextStyle(color: Colors.black),
                     decoration: InputDecoration(
