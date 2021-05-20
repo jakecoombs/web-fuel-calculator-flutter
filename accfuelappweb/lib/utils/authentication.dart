@@ -1,8 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
+final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
 bool authSignedIn;
 String uid;
@@ -107,6 +109,18 @@ Future getUser() async {
 }
 
 Future deleteUser() async {
+  CollectionReference userDataCollection = _firestore.collection('userData');
+
+  var dataToDelete = await userDataCollection
+      .where('userUid', isEqualTo: _auth.currentUser.uid)
+      .get();
+
+  if (dataToDelete.docs.length > 0) {
+    dataToDelete.docs.forEach((element) {
+      userDataCollection.doc(element.id).delete();
+    });
+  }
+
   await _auth.currentUser.delete();
   userEmail = null;
   uid = null;
