@@ -12,7 +12,10 @@ extension Localization on String {
         "nl": "Bereken",
         "it": "Calcola",
         "pl": "Oblicz",
-        "fr": "Calculer"
+        "fr": "Calculer",
+        "no": "Beregn",
+        "ru": "Вычислить",
+        "zh": "计算",
       } +
       {
         "en_gb": "Save",
@@ -22,7 +25,10 @@ extension Localization on String {
         "de": "Speichern",
         "nl": "Opslaan",
         "it": "Salva",
+        "no": "Lagre",
         "pl": "Zapisz",
+        "ru": "Сохранить",
+        "zh": "储存",
         "fr": "Sauvegarder"
       } +
       {
@@ -33,7 +39,10 @@ extension Localization on String {
         "de": "Gespeichert",
         "nl": "Opgeslagen",
         "it": "Salvato",
+        "no": "Lagret",
         "pl": "Zapisane",
+        "ru": "Сохранено",
+        "zh": "已储存",
         "fr": "Sauvegardé"
       } +
       {
@@ -44,7 +53,10 @@ extension Localization on String {
         "de": "Fehler",
         "nl": "Fout",
         "it": "Errore",
+        "no": "Feil",
         "pl": "Błąd",
+        "ru": "Ошибка",
+        "zh": "错误",
         "fr": "Erreur"
       } +
       {
@@ -55,19 +67,11 @@ extension Localization on String {
         "de": "Alle Felder müssen ausgefüllt sein",
         "nl": "Vul a.u.b alle waardes in",
         "it": "Prego compila tutti i dati",
+        "no": "Vennligst fyll inn alle verdier",
         "pl": "Prosze wypelnic wszystkie pola",
+        "ru": "Введите все значения",
+        "zh": "请填写所有数据",
         "fr": "Veuillez saisir tous les champs"
-      } +
-      {
-        "en_gb": "Community",
-        "en_us": "Community",
-        "es": "Comunidad",
-        "pt_br": "Comunidade",
-        "de": "Community",
-        "nl": "Groep",
-        "it": "Community",
-        "pl": "Spolecznosc",
-        "fr": "Communauté"
       } +
       {
         "en_gb": "Suggestions",
@@ -78,6 +82,9 @@ extension Localization on String {
         "nl": "Suggestie",
         "it": "Suggerimenti",
         "pl": "Sugestie",
+        "no": "Forslag",
+        "ru": "Предложения",
+        "zh": "建议",
         "fr": "Suggestions"
       } +
       {
@@ -88,7 +95,10 @@ extension Localization on String {
         "de": "Einstellungen",
         "nl": "Settings",
         "it": "Impostazioni",
+        "no": "Instillinger",
         "pl": "Opcje",
+        "ru": "Настройки",
+        "zh": "设置",
         "fr": "Paramètres"
       } +
       {
@@ -99,7 +109,10 @@ extension Localization on String {
         "de": "Rundenzeit",
         "nl": "Rondetijd",
         "it": "Tempo sul giro",
+        "no": "Rundetid",
         "pl": "Czas okrazenia",
+        "ru": "Время круга",
+        "zh": "圈速",
         "fr": "Temps au tour"
       } +
       {
@@ -110,7 +123,10 @@ extension Localization on String {
         "de": "Fahrtzeit",
         "nl": "Lengte van de stint",
         "it": "Lunghezza stint",
+        "no": "Stintlengde",
         "pl": "Dlugosc jazdy",
+        "ru": "Длинна отрезка",
+        "zh": "Stint长度",
         "fr": "Durée du relai"
       } +
       {
@@ -121,7 +137,10 @@ extension Localization on String {
         "de": "Liter pro Runde",
         "nl": "Liters per ronde",
         "it": "Litri per giro",
+        "no": "Liter per runde",
         "pl": "Litry na okrarzenie",
+        "ru": "Литров на круг",
+        "zh": "升/每圈",
         "fr": "Litres par tour"
       } +
       {
@@ -133,6 +152,9 @@ extension Localization on String {
         "nl": "Minimale brandstof",
         "it": "Rischio carburante",
         "pl": "Ryzykowne paliwo",
+        "no": "Risikabel",
+        "ru": "Рискованное топливо",
+        "zh": "风险油量",
         "fr": "Valeur agressive"
       } +
       {
@@ -144,6 +166,9 @@ extension Localization on String {
         "nl": "Veilige brandstof",
         "it": "Livello di sicurezza",
         "pl": "Bespieczne",
+        "no": "Sikker",
+        "ru": "Безопасное топливо",
+        "zh": "安全油量",
         "fr": "Valeur sûre"
       } +
       {
@@ -154,7 +179,10 @@ extension Localization on String {
         "de": "Einführungsrunde",
         "nl": "Formatie ronde",
         "it": "Giro di ricognizione",
+        "no": "Formasjonsrunde",
         "pl": "Okrarzenie formujace",
+        "ru": "Круг прогрева",
+        "zh": "暖胎圈",
         "fr": "Tour de chauffe"
       } +
       {
@@ -165,7 +193,10 @@ extension Localization on String {
         "de": "Einfach",
         "nl": "Simpel",
         "it": "Esemplio",
+        "no": "Enkel",
         "pl": "Prosty",
+        "ru": "Просто",
+        "zh": "简易版",
         "fr": "Simple"
       } +
       {
@@ -176,7 +207,10 @@ extension Localization on String {
         "de": "Sprache",
         "nl": "Taal",
         "it": "Lingua",
+        "no": "Språk",
         "pl": "Jezyk",
+        "ru": "Язык",
+        "zh": "语言",
         "fr": "Langage"
       } +
       {
@@ -187,7 +221,10 @@ extension Localization on String {
         "de": "Upgrade auf Premium",
         "nl": "Ga voor premium",
         "it": "Passa a premium",
+        "no": "Oppgrader til premium",
         "pl": "Uaktualnij do premium",
+        "ru": "Перейти на премиум",
+        "zh": "升级至高级版",
         "fr": "Mettre à niveau Premium"
       } +
       {
@@ -198,7 +235,9 @@ extension Localization on String {
         "de": "Premium",
         "nl": "Premium versie",
         "it": "Versione premium",
+        "no": "Premiumversjon",
         "pl": "Wersja premium",
+        "ru": "Премиум версия",
         "fr": "Version Premium"
       } +
       {
@@ -209,7 +248,10 @@ extension Localization on String {
         "de": "Darstellungsoptionen",
         "nl": "Thema setting",
         "it": "Impostazione tema",
+        "no": "Tema instillinger",
         "pl": "Ustawienia motywu",
+        "ru": "Настройки темы",
+        "zh": "主题设置",
         "fr": "Thème"
       } +
       {
@@ -220,7 +262,10 @@ extension Localization on String {
         "de": "Dark Mode ein/aus",
         "nl": "Zet donkere mode aan",
         "it": "Passa allo sfondo nero",
+        "no": "Mørk modus",
         "pl": "Ciemny motyw",
+        "ru": "Тёмная тема",
+        "zh": "深色模式",
         "fr": "Affichage sombre"
       } +
       {
@@ -231,7 +276,10 @@ extension Localization on String {
         "de": "Standarddarstellung verwenden",
         "nl": "Gebruik standaard thema",
         "it": "Usa il tema prestabilito",
+        "no": "Bruk standard systemtema",
         "pl": "Domyslny motyw",
+        "ru": "Использовать стандартную тему устройства",
+        "zh": "使用系统默认主题",
         "fr": "Utiliser le thème système"
       } +
       {
@@ -242,7 +290,10 @@ extension Localization on String {
         "de": "Verbrauchsrechner",
         "nl": "Fuel Calculator",
         "it": "Calcolo Carburante",
+        "no": "Drivstoffkalkulator",
         "pl": "Oblicz paliwo",
+        "ru": "Калькулятор топлива",
+        "zh": "油量计算器",
         "fr": "Calcul du niveau d'essence"
       } +
       {
@@ -253,7 +304,10 @@ extension Localization on String {
         "de": "Senden Sie einen Vorschlag",
         "nl": "Stuur een suggestie",
         "it": "Suggerimenti e critiche",
+        "no": "Send et forslag",
         "pl": "Wyslij sugestie",
+        "ru": "Отправить предложение",
+        "zh": "提供建议",
         "fr": "Suggérer une idée"
       } +
       {
@@ -264,7 +318,10 @@ extension Localization on String {
         "de": "einreichen",
         "nl": "Enter",
         "it": "Invia",
+        "no": "Send inn",
         "pl": "Zatwierdz",
+        "ru": "Отправить",
+        "zh": "提交",
         "fr": "Soumettre"
       } +
       {
@@ -275,7 +332,10 @@ extension Localization on String {
         "de": "Trocken",
         "nl": "Droog",
         "it": "Asciutto",
+        "no": "Tørr",
         "pl": "Suchy",
+        "ru": "Сухо",
+        "zh": "干地",
         "fr": "Sec"
       } +
       {
@@ -286,7 +346,10 @@ extension Localization on String {
         "de": "Regen",
         "nl": "Nat",
         "it": "Bagnato",
+        "no": "Våt",
         "pl": "Mokry",
+        "ru": "Мокро",
+        "zh": "湿地",
         "fr": "Humide"
       } +
       {"en_gb": "Sign in / Sign up", "en_us": "Sign in / Sign up"} +
