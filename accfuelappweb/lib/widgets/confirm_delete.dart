@@ -18,7 +18,11 @@ class ConfirmDeleteDialog extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text('Are you sure you want to delete your account?'),
+                  Text(
+                    'Are you sure you want to delete your account?',
+                    style: Theme.of(context).textTheme.bodyText1,
+                    textAlign: TextAlign.center,
+                  ),
                   Break(),
                   Row(
                     mainAxisSize: MainAxisSize.max,
@@ -47,8 +51,7 @@ class ConfirmDeleteDialog extends StatelessWidget {
                               padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
                               child: Text(
                                 'Cancel',
-                                style: TextStyle(
-                                    fontSize: 14, color: Colors.white),
+                                style: Theme.of(context).textTheme.bodyText1,
                               ),
                             ),
                           ),
@@ -59,17 +62,20 @@ class ConfirmDeleteDialog extends StatelessWidget {
                         child: Container(
                           width: double.maxFinite,
                           child: TextButton(
-                            style: ButtonStyle(overlayColor:
-                                MaterialStateProperty.resolveWith<Color>(
-                              (Set<MaterialState> states) {
-                                if (states.contains(MaterialState.hovered))
-                                  return Theme.of(context)
-                                      .colorScheme
-                                      .primary
-                                      .withOpacity(0.5);
-                                return null; // Use the component's default.
-                              },
-                            )),
+                            style: ButtonStyle(
+                                overlayColor:
+                                    MaterialStateProperty.resolveWith<Color>(
+                                  (Set<MaterialState> states) {
+                                    if (states.contains(MaterialState.hovered))
+                                      return Theme.of(context)
+                                          .colorScheme
+                                          .primary
+                                          .withOpacity(0.5);
+                                    return null; // Use the component's default.
+                                  },
+                                ),
+                                backgroundColor: MaterialStateProperty.all(
+                                    Theme.of(context).colorScheme.onPrimary)),
                             onPressed: () async {
                               deleteUser().catchError((error) {
                                 ResponseSnackbar.showSnackbar(
@@ -85,8 +91,7 @@ class ConfirmDeleteDialog extends StatelessWidget {
                               padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
                               child: Text(
                                 'Confirm',
-                                style: TextStyle(
-                                    fontSize: 14, color: Colors.white),
+                                style: Theme.of(context).textTheme.bodyText1,
                               ),
                             ),
                           ),

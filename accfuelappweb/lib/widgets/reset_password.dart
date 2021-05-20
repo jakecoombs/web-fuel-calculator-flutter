@@ -11,7 +11,7 @@ class _ResetPasswordDialogState extends State<ResetPasswordDialog> {
   TextEditingController textControllerEmail;
   FocusNode textFocusNodeEmail;
   bool _isEditingEmail;
-  bool _isRegistering;
+  bool _isSubmitting;
 
   @override
   void initState() {
@@ -19,7 +19,7 @@ class _ResetPasswordDialogState extends State<ResetPasswordDialog> {
     textControllerEmail.text = null;
     textFocusNodeEmail = FocusNode();
     _isEditingEmail = false;
-    _isRegistering = false;
+    _isSubmitting = false;
 
     super.initState();
   }
@@ -53,7 +53,13 @@ class _ResetPasswordDialogState extends State<ResetPasswordDialog> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text('Email address'),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 8),
+                    child: Text(
+                      'Email address',
+                      style: Theme.of(context).textTheme.bodyText1,
+                    ),
+                  ),
                   TextField(
                     focusNode: textFocusNodeEmail,
                     keyboardType: TextInputType.emailAddress,
@@ -72,9 +78,8 @@ class _ResetPasswordDialogState extends State<ResetPasswordDialog> {
                     decoration: InputDecoration(
                       focusedBorder: new OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(
-                              color: Theme.of(context).colorScheme.primary,
-                              width: 3)),
+                          borderSide:
+                              BorderSide(color: Colors.black, width: 3)),
                       border: new OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                         borderSide: BorderSide(
@@ -121,7 +126,7 @@ class _ResetPasswordDialogState extends State<ResetPasswordDialog> {
                               if (_validateEmail(textControllerEmail.text) ==
                                   null) {
                                 setState(() {
-                                  _isRegistering = true;
+                                  _isSubmitting = true;
                                 });
                                 await resetPassword(textControllerEmail.text)
                                     .then((result) {
@@ -140,29 +145,25 @@ class _ResetPasswordDialogState extends State<ResetPasswordDialog> {
                                 });
                               }
                               setState(() {
-                                _isRegistering = false;
+                                _isSubmitting = false;
                                 _isEditingEmail = false;
                               });
                             },
-                            child: Padding(
-                              padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
-                              child: _isRegistering
-                                  ? SizedBox(
-                                      height: 16,
-                                      width: 16,
-                                      child: CircularProgressIndicator(
-                                        strokeWidth: 2,
-                                        valueColor:
-                                            AlwaysStoppedAnimation<Color>(
-                                                Colors.white),
-                                      ),
-                                    )
-                                  : Text(
-                                      'Reset Password',
-                                      style: TextStyle(
-                                          fontSize: 14, color: Colors.white),
+                            child: _isSubmitting
+                                ? SizedBox(
+                                    height: 16,
+                                    width: 16,
+                                    child: CircularProgressIndicator(
+                                      strokeWidth: 2,
+                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                          Colors.white),
                                     ),
-                            ),
+                                  )
+                                : Text(
+                                    'Reset Password',
+                                    style:
+                                        Theme.of(context).textTheme.bodyText1,
+                                  ),
                           ),
                         ),
                       ),

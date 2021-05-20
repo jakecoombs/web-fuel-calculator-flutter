@@ -76,7 +76,10 @@ class _AuthDialogState extends State<AuthDialog> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 8),
-                    child: Text('Email address'),
+                    child: Text(
+                      'Email address',
+                      style: Theme.of(context).textTheme.bodyText1,
+                    ),
                   ),
                   TextField(
                     focusNode: textFocusNodeEmail,
@@ -98,9 +101,8 @@ class _AuthDialogState extends State<AuthDialog> {
                     decoration: InputDecoration(
                       focusedBorder: new OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(
-                              color: Theme.of(context).colorScheme.primary,
-                              width: 3)),
+                          borderSide:
+                              BorderSide(color: Colors.black, width: 3)),
                       border: new OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                         borderSide: BorderSide(
@@ -125,7 +127,10 @@ class _AuthDialogState extends State<AuthDialog> {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: Text('Password'),
+                    child: Text(
+                      'Password',
+                      style: Theme.of(context).textTheme.bodyText1,
+                    ),
                   ),
                   TextField(
                     focusNode: textFocusNodePassword,
@@ -166,9 +171,8 @@ class _AuthDialogState extends State<AuthDialog> {
                     decoration: InputDecoration(
                       focusedBorder: new OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
-                          borderSide: BorderSide(
-                              color: Theme.of(context).colorScheme.primary,
-                              width: 3)),
+                          borderSide:
+                              BorderSide(color: Colors.black, width: 3)),
                       border: new OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                         borderSide: BorderSide(
@@ -203,7 +207,8 @@ class _AuthDialogState extends State<AuthDialog> {
                                 child: CircularProgressIndicator(
                                   strokeWidth: 2,
                                   valueColor: AlwaysStoppedAnimation<Color>(
-                                      Colors.white),
+                                    Theme.of(context).accentColor,
+                                  ),
                                 ),
                               ),
                             ))
@@ -257,21 +262,22 @@ class _AuthDialogState extends State<AuthDialog> {
                                                 success: false,
                                                 duration: Duration(seconds: 5));
                                           });
+                                        } else {
+                                          ResponseSnackbar.showSnackbar(context,
+                                              'Sign in Error: Please fill in all the values',
+                                              success: false,
+                                              duration: Duration(seconds: 5));
                                         }
                                         setState(() {
                                           _isRegistering = false;
                                           _isEditingEmail = false;
                                         });
                                       },
-                                      child: Padding(
-                                        padding: EdgeInsets.only(
-                                            top: 15.0, bottom: 15.0),
-                                        child: Text(
-                                          'Sign in',
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              color: Colors.white),
-                                        ),
+                                      child: Text(
+                                        'Sign in',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText1,
                                       ),
                                     ),
                                   ),
@@ -342,15 +348,11 @@ class _AuthDialogState extends State<AuthDialog> {
                                           _isEditingEmail = false;
                                         });
                                       },
-                                      child: Padding(
-                                        padding: EdgeInsets.only(
-                                            top: 15.0, bottom: 15.0),
-                                        child: Text(
-                                          'Sign up',
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              color: Colors.white),
-                                        ),
+                                      child: Text(
+                                        'Sign up',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText1,
                                       ),
                                     ),
                                   ),
@@ -386,15 +388,11 @@ class _AuthDialogState extends State<AuthDialog> {
                                               ResetPasswordDialog(),
                                         );
                                       },
-                                      child: Padding(
-                                        padding: EdgeInsets.only(
-                                            top: 15.0, bottom: 15.0),
-                                        child: Text(
-                                          'Reset password',
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              color: Colors.white),
-                                        ),
+                                      child: Text(
+                                        'Reset password',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyText1,
                                       ),
                                     ),
                                   ),
