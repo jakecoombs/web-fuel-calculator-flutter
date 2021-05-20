@@ -269,8 +269,8 @@ extension Localization on String {
         "fr": "Affichage sombre"
       } +
       {
-        "en_gb": "Use system default theme",
-        "en_us": "Use system default theme",
+        "en_gb": "System default theme",
+        "en_us": "System default theme",
         "es": "Usar tema predeterminado del sistema",
         "pt_br": "Usar tema padrão do sistema",
         "de": "Standarddarstellung verwenden",
