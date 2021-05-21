@@ -33,7 +33,7 @@ class SaveButton extends StatelessWidget {
       lapMinute.text.toString(),
       lapSecond.text.toString(),
       litresPerLap.text.toString(),
-      lapMillisecond.text.isNotEmpty ? lapMillisecond.text : ''
+      lapMillisecond.text.isNotEmpty ? lapMillisecond.text : '0'
     ]);
     if (uid != null) {
       updateUserData(

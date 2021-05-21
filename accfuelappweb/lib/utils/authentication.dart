@@ -1,3 +1,4 @@
+import 'package:accfuelappweb/utils/appData.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -32,6 +33,46 @@ Future<String> registerWithEmailPassword(String email, String password) async {
 
     assert(!user.isAnonymous);
     assert(await user.getIdToken() != null);
+
+    // Upload existing data
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    CollectionReference userDataCollection = _firestore.collection('userData');
+
+    tracks.forEach((track) {
+      cars.values.forEach((carsByClass) {
+        carsByClass.forEach((car) async {
+          String trackCar = track.replaceAll(' ', '') + car.replaceAll(' ', '');
+          List<String> dryUserData = prefs.getStringList(trackCar);
+          if (dryUserData != null) {
+            await userDataCollection.add({
+              'car': car,
+              'track': track,
+              'conditions': 'Dry',
+              'litresPerLap': int.parse(dryUserData[2]),
+              'minutes': int.parse(dryUserData[0]),
+              'seconds': int.parse(dryUserData[1]),
+              'milliseconds':
+                  dryUserData.length >= 4 ? int.parse(dryUserData[3]) : 0,
+              'userUid': uid
+            });
+          }
+          List<String> wetUserData = prefs.getStringList(trackCar + 'Wet');
+          if (wetUserData != null) {
+            await userDataCollection.add({
+              'car': car,
+              'track': track,
+              'conditions': 'Wet',
+              'litresPerLap': int.parse(wetUserData[2]),
+              'minutes': int.parse(wetUserData[0]),
+              'seconds': int.parse(wetUserData[1]),
+              'milliseconds':
+                  wetUserData.length >= 4 ? int.parse(wetUserData[3]) : 0,
+              'userUid': uid
+            });
+          }
+        });
+      });
+    });
 
     return 'Successfully registered, User UID: ${user.uid}';
   }
